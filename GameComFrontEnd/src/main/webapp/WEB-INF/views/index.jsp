@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
 {
 }
 </style>
-<title>GameCom</title>
+<title>GameComFrontEnd</title>
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta charset="utf-8">
@@ -30,22 +30,26 @@
 </ol>
 
 <div class="carousel-inner">
+
 <div class="item active">
+<c:url value="resources/img1.png" var="img1" ></c:url>
 <img class="img-rounded" class="img-responsive center-block" 
-src="resources/img.png" style="width:100%">
+src="${img1}" alt="img1" style="width:1280px" height="720px">
 </div>
 
 <div class="item">
+<c:url value="resources/img2.png" var="img2" ></c:url>
 <img class="img-rounded" class="img-responsive center-block" 
-src="resources/img2.png" style="width:100%">
+src="${img2}" alt="img2" style="width:1280px" height="720px">
 </div>
-
 
 <div class="item">
+<c:url value="resources/img4.png" var="img4" ></c:url>
 <img class="img-rounded" class="img-responsive center-block" 
-src="resources/img3.png" style="width:100%">
+src="${img4}" alt="img4" style="width:1280px" height="720px">
 </div>
-</div>
+
+</div> 
 
 
 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -59,10 +63,8 @@ src="resources/img3.png" style="width:100%">
 <span class="glyphicon glyphicon-chevron-right"></span>
 <span class="sr-only">Next</span>
 </a>
-
 </div>
 </div>
-
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

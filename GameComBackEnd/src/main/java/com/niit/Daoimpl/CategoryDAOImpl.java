@@ -1,82 +1,94 @@
 package com.niit.Daoimpl;
-
-
 import java.util.List;
-import java.util.Locale.Category;
-
-import javax.transaction.Transactional;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.Dao.CategoryDao;
+import com.niit.Dao.CategoryDAO;
+import com.niit.model.Category;
 
 
-@Repository("categoryDao")
-public class CategoryDAOImpl implements CategoryDao 
-{
+@Repository
+
+public class CategoryDAOImpl implements CategoryDAO {
 	@Autowired
 	SessionFactory sessionFactory;
+	public CategoryDAOImpl(SessionFactory sessionFac)
+	{
+		   super();
+		   sessionFac=sessionFactory;
+	   }
 	
 	@Transactional
-	@Override
-	public boolean addCategory(com.niit.model.Category category)
+	public boolean addCategory(Category category) 
 	{
 		try
 		{
-			sessionFactory.getCurrentSession().save(category);
+			sessionFactory.getCurrentSession().saveOrUpdate(category);
 			return true;
-		}
-		catch(Exception e)
-		{
-		return false;
-	}
-}
-
-	@Override
-	public List<Category> retrieveCategory() 
-	{
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Category");
-		List<Category> listCategory=query.list();
-		session.close();
-		return listCategory;
-	}
-	@Override
-	public boolean deleteCategory(com.niit.model.Category category) {
-		try
-		{
-			sessionFactory.getCurrentSession().delete(category);
-			return true;
-		}
-		catch(Exception e)
-		{
-		return false;
-		}
-	}
-	@Override
-	public Category getCategory(int cadId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Transactional
-	@Override
-	public boolean updateCategory(com.niit.model.Category category) 
-	{
-		try
-		{
-			sessionFactory.getCurrentSession().update(category);
-			return true;
-			
-		}
-		catch(Exception e)
-		{
-			return false;	
+	    }
+	     catch(Exception e)
+	    {
+	    	 System.out.println("Exception arised");
+			return false;
 		}
 		
+	}
+	
+	@Transactional
+	public List<Category> retrieveCategory() 
+	{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from Category");
+			List<Category>listCategory=query.list();
+			session.close();
+			return listCategory;
+	}
+	
+	@Transactional
+	public boolean deleteCategory(Category category)
+	{
+try
+	    
+		{
+		sessionFactory.getCurrentSession().delete(category);
+
+	
+		return true;
+	    }
+	     catch(Exception e)
+	    {
+	    	 System.out.println("Exception arised");
+	    	 return false;	
+	    }
+			
+	}
+	
+	@Transactional
+	public Category getCategory(int catId) 
+	{
+			Session session=sessionFactory.openSession();
+			Category category=(Category)session.get( Category.class,catId);
+			session.close();
+			return category;
+	}
+	
+	@Transactional
+	public boolean updateCategory(Category category) 
+	{
+		try
+	    
+		{
+		sessionFactory.getCurrentSession().saveOrUpdate(category);
+		return true;
+	    }
+	     catch(Exception e)
+	    {
+	    	 System.out.println("Exception Arised:"+e);
+			return false;
+		}
 	}
 }
