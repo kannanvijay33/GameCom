@@ -1,18 +1,12 @@
 package com.controller;
-
-import java.util.Collection;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.niit.Dao.ProductDAO;
+import com.niit.model.User;
 
 @Controller
 public class PageController 
@@ -20,13 +14,29 @@ public class PageController
 	@Autowired
 	ProductDAO productDAO;
 	
-	@RequestMapping(value="login")
-	public String showLoginPage()
+	@RequestMapping("/register")
+	public String goToregister(Model model)
 	{
+		model.addAttribute("user",new User());
+		return "register";
+	}
+	
+	
+
+	@RequestMapping("/Login")
+	public String login(@RequestParam(value = "error", required = false) String error, 
+			@RequestParam(value = "logout", required = false) String logout, Model model)
+	{
+		if(error != null) {
+			model.addAttribute("error", "Username or Password Incorrect");
+			}
+		
+		if(logout != null) {
+			model.addAttribute("logout", "Logged out Successfully");
+			}
 		return "Login";
 	}
-
-	@RequestMapping(value="login_success")
+	/*@RequestMapping(value="login_success")
 	public String loginSuccess(Model m,HttpSession session)
 	{
 		String page_Url=null;
@@ -34,6 +44,7 @@ public class PageController
 		boolean loggedIn=false;
 		
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+	
 		String logged_UserName=authentication.getName();
 		session.setAttribute("username",logged_UserName);
 		Collection<GrantedAuthority> authorities=(Collection<GrantedAuthority>)authentication.getAuthorities();
@@ -59,4 +70,21 @@ public class PageController
 		session.setAttribute("role",role_name);
 		return page_Url;
 	}
-}
+	
+	@RequestMapping("/error")
+	
+	public String errorPage()
+	{
+		return "/error";
+	}
+	
+	@RequestMapping("/userLogged")
+	
+	public String userLogged()
+	{
+		return "redirect:/";
+	}
+	
+	
+*/
+	}

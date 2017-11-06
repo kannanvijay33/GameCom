@@ -5,46 +5,64 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js""></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Header-GameComFrontEnd</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Header-GameCom</title>
 </head>
 <body>
-<nav id="navbar-green" class="navbar navbar-inverse navbar-static-top" role="navigation">
-<div class="container">
-<ul class="nav navbar-nav">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-nav">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</button>
-</ul>
-</div>
-<div class="collapse navbar-collapse" id="bs-example-nav">
 
-<ul class="nav navbar-nav">
+<nav id="navbar-red" class="navbar navbar-inverse navbar-static-top" role="navigation">
+	<div class="container">
+		<ul class="nav navbar-nav">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-nav">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</ul>
+	</div>
 
-<c:url value="/home" var="home" ></c:url>
-<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+ <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-<c:url value="/register" var="reg" ></c:url>
-<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+	<ul class="nav navbar-nav">
 
-<c:url value="/Login" var="log"></c:url>
-<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li>
+	
+	<c:url value="/home" var="home" ></c:url>
+	<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+	
+	<c:url value="/admin/adding" var="add" ></c:url>
+	<li><a href="${add}">Admin</a></li>
 
-<c:url value="/product" var="prod"></c:url>
-<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
+  	<c:url value="/register" var="reg" ></c:url>
+	<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+ 
+ 	<c:if test="${pageContext.request.userPrincipal.name == null }">
+ 	<c:url value="/Login" var="log"></c:url>
+	<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
+	</c:if>
 
-<c:url value="/category" var="cat"></c:url>
-<li><a href="${cat}">Category</a></li>
-</ul>
+	<c:url value="/product" var="prod"></c:url>
+	<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
 
-</div>
+	<c:url value="/Category" var="cat"></c:url>
+	<li><a href="${cat}">Category</a></li>
+
+	<c:url value="/Supplier" var="sup"></c:url>
+	<li><a href="${sup}">Supplier</a></li>
+ 	<c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
+				<c:if test="${pageContext.request.userPrincipal.name!=null }">
+					<li><a href="${logoutUrl }"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</c:if>
+ 	</ul>
+
+</div> 
 </nav>
 </body>
 </html>

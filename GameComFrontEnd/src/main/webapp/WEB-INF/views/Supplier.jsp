@@ -1,62 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.niit.model.Supplier "
-    pageEncoding="ISO-8859-1"%>
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
-     <%@ taglib  uri="http://www.springframework.org/tags/form" prefix= "form" %>
-     
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.niit.model.Supplier"
+	pageEncoding="ISO-8859-1" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<jsp:include page="header.jsp"></jsp:include>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Supplier-GameCom</title>
 </head>
 <body>
-<form:form action="AddSupplier" modelAttribute="supplier">
-<table align="center" >
-<tr >
-<td colspan="2">Supplier Details</td>
-</tr>
 
-<tr>
-<td>Supplier ID</td>
-<td><form:input path="supplierId"/></td>
-</tr>
+	<form:form action="AddSupplier" modelAttribute="supplier">
+		<table align="center" cellspacing="2">
+			<tr>
+				<td colspan="2">Supplier Module</td>
+			</tr>
+			
+			
+			<tr>
+				<td>Supplier Name</td>
+				<td><form:input path="supName" /></td>
+			</tr>
+			<tr>
+				<td>Supplier Address</td>
+				<td><form:input path="supAddress" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<center>
+						<input type="submit" value="Insert" />
+					</center>
+				</td>
+			</tr>
+		</table>
+	</form:form>
 
-<tr>
-<td>Supplier Name</td>
+	<table cellspacing="2" align="center">
+		<tr bgcolor="green">
+			<td>Supplier ID</td>
+			<td>Supplier Name</td>
+			<td>Supplier Address</td>
+			<td>Operation</td>
+		</tr>
+		<c:forEach items="${SupplierList }" var="sup">
+			<tr bgcolor="cyan">
+				<td>${sup.supId}</td>
+				<td>${sup.supName}</td>
+				<td>${sup.supAddress}</td>
 
-<td><form:input path="supplierName"/></td>
-</tr>
-<tr>
-<td>Supplier Address</td>
-
-<td><form:input path="supplierAddress"/></td>
-</tr>
-<tr>
-<td colspan="2">
-<center><input type="submit"  value="Insert"/></center>
-</td>
-</tr>
-<table cellspacing="2" align="center">
-<tr bgcolor="green">
-<td>Supplier ID</td>
-<td>Supplier Name</td>
-<td>Supplier Address</td>
-</tr>
-<c:forEach items="${SupplierList }" var="supplier">
-<tr bgcolor="cyan">
-<td>${supplier.catId}</td>
-<td>${supplier.catName}</td>
-<td>${supplier.catAddress}</td>
-
-<td>
-<a href="<c:url value="deleteSupplier/${supplier.catId}"/>">DELETE</a>
-<a href="<c:url value="updateSupplier/${supplier.catId}"/>">UPDATE</a>
-</td>
-
-</tr>
-</c:forEach>
-
-</table>
-</form:form>
+				<td><a href="<c:url value="deleteSupplier/${sup.supId}"/>">DELETE</a>
+					<a href="<c:url value="updateSupplier/${sup.supId}"/>">UPDATE</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

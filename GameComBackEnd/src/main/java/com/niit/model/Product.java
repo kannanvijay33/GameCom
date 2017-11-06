@@ -1,18 +1,47 @@
 package com.niit.model;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table
 public class Product
 {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int productId;
-	String productName,productDesc;
-	int stock,price,catId,supplierId;
+	
+	@NotEmpty(message="product name cannot be empty")
+	String productName;
+	
+	@NotEmpty(message="product name cannot be empty")
+	String productDesc;
+	int stock;
+	
+	@Min(value=50)
+	int price;
+	int catId;
+	int supplierId;
+	
+	@Transient
+	MultipartFile pimage;
+	
+	public MultipartFile getPimage() {
+		return pimage;
+	}
+	public void setPimage(MultipartFile pimage) {
+		this.pimage = pimage;
+	}
 	public int getProductId() {
 		return productId;
 	}

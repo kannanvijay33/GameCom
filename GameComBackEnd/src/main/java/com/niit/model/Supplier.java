@@ -1,34 +1,34 @@
 package com.niit.model;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 @Entity
 @Table
-public class Supplier 
-{
+public class Supplier {
 	@Id
 	@GeneratedValue
-	int SupplierId;
-	String SupplierName,SupplierAddress;
-	public int getSupplierId() {
-		return SupplierId;
+	int supId;
+	String supName;
+	String supAddress;
+	public int getSupId() {
+		return supId;
 	}
-	public void setSupplierId(int supplierId) {
-		SupplierId = supplierId;
+	public void setSupId(int supId) {
+		this.supId = supId;
 	}
-	public String getSupplierName() {
-		return SupplierName;
+	public String getSupName() {
+		return supName;
 	}
-	public void setSupplierName(String supplierName) {
-		SupplierName = supplierName;
+	public void setSupName(String supName) {
+		this.supName = supName;
 	}
-	public String getSupplierAddress() {
-		return SupplierAddress;
+	public String getSupAddress() {
+		return supAddress;
 	}
-	public void setSupplierAddress(String supplierAddress) {
-		SupplierAddress = supplierAddress;
+	public void setSupAddress(String supAddress) {
+		this.supAddress = supAddress;
 	}
-
+	
 }

@@ -27,5 +27,11 @@ public class Userdaoimpl implements UserDao {
 		sessionFac= sessionFactory;
 	}
 
+	/*public Object retrieve()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
 
 }

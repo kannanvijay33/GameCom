@@ -20,8 +20,15 @@
 </head>
 <jsp:include page="header.jsp"></jsp:include>
 <body>
+<style>
+body {
+    background: url("https://n6-img-fp.akamaized.net/free-vector/modern-technological-elements-with-transparent-background_1035-7108.jpg?size=338&ext=jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Droid Serif', serif;
+}
+</style>
 <div class="container">
-<h2><i>GameCom</i></h2>
+<h2 style=color:red><i>GameCom</i></h2>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <ol class="carousel-indicators">
 <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
@@ -51,13 +58,10 @@ src="${img4}" alt="img4" style="width:1280px" height="720px">
 
 </div> 
 
-
 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 <span class="glyphicon glyphicon-chevron-left"></span>
 <span class="sr-only">Previous</span>
 </a>
-
-
 
 <a class="right carousel-control" href="#myCarousel" data-slide="next">
 <span class="glyphicon glyphicon-chevron-right"></span>

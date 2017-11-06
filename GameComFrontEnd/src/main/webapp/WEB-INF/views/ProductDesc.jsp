@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Product Desc-GameCom</title>
 </head>
 <body>
 <table>
@@ -29,10 +29,7 @@
 	<td>&nbsp;</td>
 </tr>	
 
-<tr>
-	<td>&nbsp;</td>
-	<td>&nbsp;</td>
-</tr>
+
 </table>
 </body>
 </html>
