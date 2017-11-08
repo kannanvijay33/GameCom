@@ -1,7 +1,14 @@
 package com.niit.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -14,6 +21,7 @@ public class Cart implements Serializable
 	@GeneratedValue
 	private int cartId;
 	
+		
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="userid")
 	private User user;
@@ -24,6 +32,15 @@ public class Cart implements Serializable
 	
 	private double cartPrice;
 	private int cartQuantity;
+	
+	private String cartProdName;
+	public String getCartProdName() {
+		return cartProdName;
+	}
+	public void setCartProdName(String cartProdName) {
+		this.cartProdName = cartProdName;
+	}
+	
 	
 	public int getCartId() {
 		return cartId;

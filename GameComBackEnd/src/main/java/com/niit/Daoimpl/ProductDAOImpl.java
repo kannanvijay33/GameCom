@@ -76,6 +76,10 @@ public class ProductDAOImpl implements ProductDAO
 			return false;
 		}
 	}
+	public Product findById(int catId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 

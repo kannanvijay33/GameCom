@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.Dao.UserDao;
 import com.niit.Daoimpl.Userdaoimpl;
@@ -17,9 +17,11 @@ import com.niit.model.Category;
 import com.niit.model.Product;
 import com.niit.model.Supplier;
 import com.niit.model.User;
+
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.niit")
+
 public class HiberConfig {
 	private static final String SessionFactory = null;
 	private Object sessionFactory;
