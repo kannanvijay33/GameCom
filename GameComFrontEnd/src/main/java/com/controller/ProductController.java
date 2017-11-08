@@ -101,7 +101,7 @@ public class ProductController
 	public String insertProduct(@ModelAttribute("product")Product product,@RequestParam("pimage")MultipartFile fileDetail,Model m)
 	{
 	  productDAO.addProduct(product);
-		String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\images";
+		String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\images\\";
 		
 		String totalFileWithPath=path+String.valueOf(product.getProductId())+".jpg";
 		
@@ -136,10 +136,10 @@ public class ProductController
   		Product product=productDAO.getProduct(productId);
   		productDAO.deleteProduct(product);
   		Product product1=new Product();
-     m.addAttribute(product1);
-      List<Product> listProduct=productDAO.retrieveProducts();
+  		m.addAttribute(product1);
+  		List<Product> listProduct=productDAO.retrieveProducts();
     	m.addAttribute("ProductList",listProduct);
-      return "Product";
+    	return "Product";
   
     }
 }

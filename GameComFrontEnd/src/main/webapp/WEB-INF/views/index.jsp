@@ -22,13 +22,13 @@
 <body>
 <style>
 body {
-    background: url("https://n6-img-fp.akamaized.net/free-vector/modern-technological-elements-with-transparent-background_1035-7108.jpg?size=338&ext=jpg") no-repeat center center fixed;
+    background: url("https://orig00.deviantart.net/0e8f/f/2015/349/4/8/grunge_texture_vector_background_by_123freevectors-d9kb1ei.png") no-repeat center center fixed;
     background-size: cover;
     font-family: 'Droid Serif', serif;
 }
 </style>
 <div class="container">
-<h2 style=color:red><i>GameCom</i></h2>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <ol class="carousel-indicators">
 <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>

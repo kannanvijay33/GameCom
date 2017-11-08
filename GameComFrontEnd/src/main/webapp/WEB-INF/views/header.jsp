@@ -15,8 +15,83 @@
 <title>Header-GameCom</title>
 </head>
 <body>
+<style>
+	{
+height:100%;
+}
+.fx{
+position:fixed;
+z-index:9
+}
+div.container a {
+	color: black;
+	text-decoration: none;
+	font: 15px Raleway;
+	position: relative;
+	z-index: 0;
+	cursor: pointer;
+}
+/* Circle behind */
+div.circleBehind a:before, div.circleBehind a:after {
+	position: absolute;
+	top: 22px;
+	left: 50%;
+	width: 50px;
+	height: 50px;
+	border: 4px solid #0277bd;
+	transform: translateX(-50%) translateY(-50%) scale(0.8);
+	border-radius: 50%;
+	background: transparent;
+	content: "";
+	opacity: 0;
+	transition: all 0.3s;
+	z-index: -1;
+}
+div.circleBehind a:after {
+	border-width: 2px;
+	transition: all 0.4s;
+}
+div.circleBehind a:hover:before {
+	opacity: 1;
+	transform: translateX(-50%) translateY(-50%) scale(1);
+}
+div.circleBehind a:hover:after {
+	opacity: 1;
+	transform: translateX(-50%) translateY(-50%) scale(1.3);
+}
+nav {
+	background-color: #2196f3 !important;
+	border-color: darkblue !important;
+		text-align: center;
+}
+nav a:hover {
+	color: black !important;
+}
+.nav.navbar-nav.navbar-right li a {
+	color: white;
+}
+.nav.navbar-nav li a {
+	color: white;
+}
+.navbar-toggle.collapsed li a{
+	background-color: #2196f3 !important;
+}
+.navbar-inverse .navbar-brand {
+	color: #ffc107;
+}
+.dropdown a {
+	background-color: #2196f3 !important;
+}
+.dropdown-menu li a {
+	background-color: white !important;
+	color: black !important;
+	height: 50px;
+	text-align: center;
+}
 
-<nav id="navbar-red" class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+</style>
+<nav id="navbar-green" class="navbar navbar-inverse navbar-static-top" role="navigation">
 	<div class="container">
 		<ul class="nav navbar-nav">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-nav">
@@ -31,21 +106,9 @@
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 	<ul class="nav navbar-nav">
-
 	
 	<c:url value="/home" var="home" ></c:url>
-	<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-	
-	<c:url value="/admin/adding" var="add" ></c:url>
-	<li><a href="${add}">Admin</a></li>
-
-  	<c:url value="/register" var="reg" ></c:url>
-	<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
- 
- 	<c:if test="${pageContext.request.userPrincipal.name == null }">
- 	<c:url value="/Login" var="log"></c:url>
-	<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
-	</c:if>
+	<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li> 	
 
 	<c:url value="/product" var="prod"></c:url>
 	<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
@@ -60,6 +123,17 @@
 					<li><a href="${logoutUrl }"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</c:if>
+				</ul>
+				
+		<ul class="nav navbar-right navbar-nav right0">
+				
+				<c:url value="/register" var="reg" ></c:url>
+	<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+ 
+ 	<c:if test="${pageContext.request.userPrincipal.name == null }">
+ 	<c:url value="/Login" var="log"></c:url>
+	<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
+	</c:if>
  	</ul>
 
 </div> 

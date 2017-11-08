@@ -79,8 +79,14 @@
 							<th>CVV</th>
 						</tr>
 						
-						<tr><td colspan="2"><input type="number" min="1" max="12" name="month"></td></tr>					
+						<tr><td colspan="2"><input type="number" min="1" max="12" name="month"></td></tr>
+						<tr><td colspan="2"><input type="number" min="00" max="99" name="YY"></td></tr>
+						
+						<th>&nbsp;&nbsp;&nbsp;</th>					
+						<tr><td colspan="2"><input type="number" min="00" max="999" name="cvv"></td></tr>
 					</table>
+					
+					<input type="submit" value="proceed" class="btn btn-success">
 					</form>
 				</div>
 			

@@ -50,6 +50,13 @@
 				</td>
 			</tr>
 		</tbody>
+		<tfoot>
+		<tr>
+			<td><a href="/index" class="btn btn-warning">Continue Shopping</a></td>
+				<c:if test="${not empty cartInfo}">
+					<td><a href="/CheckOut" class="btn btn-warning">CheckOut</a></td>
+				</c:if>
+		</tr>
 	</table>
 
 
