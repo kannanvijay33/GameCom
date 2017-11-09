@@ -1,75 +1,50 @@
 package com.niit.model;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.springframework.stereotype.Component;
-
 @Entity
-@Component
-public class Cart implements Serializable
-{
-	private static final long serialVersionUID = 1L;
-	
+public class Cart {
 	@Id
-	@GeneratedValue
-	private int cartId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	private double grandtotal;
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER)
+	private List<CartItem> cartitems;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public double getGrandtotal() {
+		return grandtotal;
+	}
+	public void setGrandtotal(double grandtotal) {
+		this.grandtotal = grandtotal;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public List<CartItem> getCartitems() {
+		return cartitems;
+	}
+	public void setCartitems(List<CartItem> cartitems) {
+		this.cartitems = cartitems;
+	}
 	
-		
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="userid")
-	private User user;
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="productId")
-	private Product product;
-	
-	private double cartPrice;
-	private int cartQuantity;
-	
-	private String cartProdName;
-	public String getCartProdName() {
-		return cartProdName;
-	}
-	public void setCartProdName(String cartProdName) {
-		this.cartProdName = cartProdName;
-	}
-	
-	
-	public int getCartId() {
-		return cartId;
-	}
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	public double getCartPrice() {
-		return cartPrice;
-	}
-	public void setCartPrice(double cartPrice) {
-		this.cartPrice = cartPrice;
-	}
-	public int getCartQuantity() {
-		return cartQuantity;
-	}
-	public void setCartQuantity(int cartQuantity) {
-		this.cartQuantity = cartQuantity;
-	}
 }

@@ -1,6 +1,8 @@
 package com.niit.Config;
 import java.util.Properties;
+
 import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,9 +12,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import com.niit.Dao.UserDao;
 import com.niit.Daoimpl.Userdaoimpl;
-import com.niit.model.Cart;
 import com.niit.model.Category;
 import com.niit.model.Product;
 import com.niit.model.Supplier;
@@ -58,7 +60,6 @@ public class HiberConfig {
 		sb.addAnnotatedClass(Category.class);
 		sb.addAnnotatedClass(Supplier.class);
 		sb.addAnnotatedClass(Product.class);
-		sb.addAnnotatedClass(Cart.class);
 		SessionFactory sessionFactory = sb.buildSessionFactory();
 		System.out.println("Session Factory is created");
 		return sessionFactory;

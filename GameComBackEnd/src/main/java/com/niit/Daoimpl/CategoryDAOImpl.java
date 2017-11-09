@@ -9,13 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.Dao.CategoryDAO;
 import com.niit.model.Category;
-
-
 @Repository
-
-public class CategoryDAOImpl implements CategoryDAO {
+public class CategoryDAOImpl implements CategoryDAO 
+{
 	@Autowired
 	SessionFactory sessionFactory;
+	
 	public CategoryDAOImpl(SessionFactory sessionFac)
 	{
 		   super();
@@ -51,13 +50,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Transactional
 	public boolean deleteCategory(Category category)
 	{
-try
-	    
+		try
 		{
-		sessionFactory.getCurrentSession().delete(category);
-
-	
-		return true;
+			sessionFactory.getCurrentSession().delete(category);
+			return true;
 	    }
 	     catch(Exception e)
 	    {
