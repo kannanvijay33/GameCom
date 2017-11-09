@@ -13,6 +13,5 @@ public class AdminController
 		mv.setViewName("Login");
 		return mv;
 	}
-	
-	
 }
+	

@@ -35,5 +35,5 @@ public class PageController
 			model.addAttribute("logout", "Logged out Successfully");
 			}
 		return "Login";
+		}
 	}
-}

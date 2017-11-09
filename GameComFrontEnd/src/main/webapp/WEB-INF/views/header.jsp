@@ -8,15 +8,16 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js""></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Header-GameCom</title>
 </head>
 <body>
+
 <style>
-	{
+{
 height:100%;
 }
 .fx{
@@ -105,7 +106,7 @@ nav a:hover {
 
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-	<ul class="nav navbar-nav">
+	<%-- <ul class="nav navbar-nav">
 	
 	<c:url value="/home" var="home" ></c:url>
 	<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li> 	
@@ -118,6 +119,7 @@ nav a:hover {
 
 	<c:url value="/Supplier" var="sup"></c:url>
 	<li><a href="${sup}">Supplier</a></li>
+	
  	<c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
 				<c:if test="${pageContext.request.userPrincipal.name!=null }">
 					<li><a href="${logoutUrl }"><span
@@ -135,6 +137,57 @@ nav a:hover {
 	<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
 	</c:if>
  	</ul>
+ --%>
+ <ul class="nav navbar-left navbar-nav left0">
+ <a>
+	<img src="${pageContext.request.contextPath}/resources/logo.png" class="logoImgStyle shiftLeft left5" height="70px" width="70px"/>	
+	</a>
+	</ul>
+	
+ <ul class="nav navbar-left navbar-nav left1">
+ <c:url value="/" var="home" ></c:url>
+ <li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+ </ul>
+ 
+ <ul class="nav navbar-right navbar-nav right0">
+ <c:if test="${pageContext.request.userPrincipal.name==null }">
+
+<c:url value="/Login" var="log"></c:url>
+<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
+	
+<c:url value="/register" var="reg" ></c:url>
+<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+</c:if>
+</ul>
+
+ <c:if test="${pageContext.request.userPrincipal.name!=null }"> 
+<security:authorize access="hasRole('ROLE_ADMIN')">
+<ul class="nav navbar-center navbar-nav center0">
+	<c:url value="/product" var="prod"></c:url>
+	<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
+
+	<c:url value="/Category" var="cat"></c:url>
+	<li><a href="${cat}">Category</a></li>
+
+	<c:url value="/Supplier" var="sup"></c:url>
+	<li><a href="${sup}">Supplier</a></li>
+	</ul>
+				</security:authorize>
+</c:if>
+
+<c:if test="${sessionScope.roleName=='user'}">
+<security:authorize access="hasRole('ROLE_USER')">
+<li><a href="#"> PRODUCTS</a></li>
+ <li><a  href="#">MY CART</a></li>
+</security:authorize>
+</c:if>
+<ul class="nav navbar-right navbar-nav right0">
+ <c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
+				<c:if test="${pageContext.request.userPrincipal.name!=null }">
+					<li><a href="${logoutUrl}"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</c:if>
+				</ul>
 
 </div> 
 </nav>
