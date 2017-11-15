@@ -1,12 +1,9 @@
 package com.controller;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedHashMap;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.niit.Dao.CategoryDAO;
 import com.niit.Dao.ProductDAO;
 import com.niit.Dao.SupplierDAO;
@@ -88,10 +84,36 @@ public class ProductController
     
       }
   @RequestMapping(value="/UpdateProduct",method=RequestMethod.POST)
-  public String updateCategory(@ModelAttribute("product") Product product,Model m)
+  public String updateCategory(@ModelAttribute("product")Product product,@RequestParam("pimage")MultipartFile fileDetail,Model m)
     {
 	  System.out.println(product.getProductName());
 	  productDAO.updateProduct(product);
+	  String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\products\\";
+		
+		String totalFileWithPath=path+String.valueOf(product.getProductId())+".jpg";
+		
+		File productImage=new File(totalFileWithPath);
+
+		if(!fileDetail.isEmpty())
+		{
+			try
+			{
+				byte fileBuffer[]=fileDetail.getBytes();
+				FileOutputStream fos=new FileOutputStream(productImage);
+				BufferedOutputStream bs=new BufferedOutputStream(fos);
+				bs.write(fileBuffer);
+				bs.close();
+			}
+			catch(Exception e)
+			{
+				m.addAttribute("FileException",e.getMessage());
+			}
+		}
+		else
+		{
+			m.addAttribute("error","Problem in File Uploading");
+		}
+		
 	  List<Product> listProduct=productDAO.retrieveProducts();
 	  m.addAttribute("ProductList",listProduct);
 	  return "UpdateProduct";
@@ -101,7 +123,7 @@ public class ProductController
 	public String insertProduct(@ModelAttribute("product")Product product,@RequestParam("pimage")MultipartFile fileDetail,Model m)
 	{
 	  productDAO.addProduct(product);
-		String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\images\\";
+		String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\products\\";
 		
 		String totalFileWithPath=path+String.valueOf(product.getProductId())+".jpg";
 		
@@ -142,5 +164,28 @@ public class ProductController
     	return "Product";
   
     }
-}
-
+  	
+  	@RequestMapping(value="/viewProduct/{productId}",method=RequestMethod.GET)
+  	public String viewProduct(@PathVariable("productId")int productId,Model m)
+  	{
+  		Product product= productDAO.getProduct(productId);
+  		m.addAttribute("product", product);
+  		return "viewproduct";
+  		/*m.addAttribute(product);
+  		int catId = product.getCatId();
+  		Category category = categoryDAO.getCategory(catId);
+  		m.addAttribute(category);
+  		int supId = product.getSupplierId();
+  		Supplier supplier = supplierDAO.getSupplier(supId);
+  		m.addAttribute(supplier);
+  		return "ProductDetails";*/
+  	}
+  	
+  	@RequestMapping(value="/MyProducts",method=RequestMethod.GET)
+  	public String MyProducts(@PathVariable("productId")int productId,Model m)
+  	{
+  		Product product= productDAO.getProduct(productId);
+  		m.addAttribute("product", product);
+  		return "MyProducts";
+  	}
+  	}

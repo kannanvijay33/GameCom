@@ -39,14 +39,14 @@
 	</form:form>
 
 	<table cellspacing="2" align="center">
-		<tr bgcolor="green">
+		<tr bgcolor="#F39C12">
 			<td>Supplier ID</td>
 			<td>Supplier Name</td>
 			<td>Supplier Address</td>
 			<td>Operation</td>
 		</tr>
 		<c:forEach items="${SupplierList }" var="sup">
-			<tr bgcolor="cyan">
+			<tr bgcolor="#F1C40F">
 				<td>${sup.supId}</td>
 				<td>${sup.supName}</td>
 				<td>${sup.supAddress}</td>

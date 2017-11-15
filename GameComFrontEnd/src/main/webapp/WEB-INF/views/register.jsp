@@ -103,8 +103,7 @@ nav a:hover {
 			<div class="col-lg-12">
 
 			<div class="row">
-					
-			<!-- 	<c:url value="saveregister" var="action"></c:url> -->
+			
 				<form:form action="saveregister" method="post" name="form" modelAttribute="user">
 				 
 					 <body>
@@ -113,27 +112,39 @@ nav a:hover {
         <%--  <form method="post"> --%>
             <fieldset>
                <br/>
-                             
-               <input type="text" name="name" id="name" placeholder="Enter UserName" required >
+                       
+                <div class="form-group">
+                <form:input path="name" type="text" id="name" placeholder="Enter Name" class="form-control"  />
+                </div> 
                <br/><br/>
                
-               <input type="email" name="email" id="email" placeholder="Enter E-mail Address" required>
-               <br/><br/>
-                             
-               <input type="text" name="phone" id="phone" placeholder="Enter Phone Number" required >
-               <br/><br/>
-               
-               <input type="text" name="address" id="address" placeholder="Enter Address" required >
-               <br/><br/>
-               
-                <input type="password" name="password" id="password" placeholder="Enter Password" required>
+                <div class="form-group">
+                <form:input path="email" type="text" id="email" placeholder="Enter E-mail Address"  class="form-control"  />
+                </div>  
+                <br/><br/>  
+                
+                 <div class="form-group">
+                <form:input path="phone" type="text" id="phone" placeholder="Enter Phone Number" class="form-control"  />
+                </div>    
                <br/><br/>
                
-               <input type="text" name="role" id="role" placeholder="Enter Role" required >
-               <br/><br/>
-               
-               <input type="text" name="country" id="country" placeholder="Enter Country" required >
-               <br/><br/>
+                 <%-- <div class="form-group">
+                <form:input path="address" type="text" id="address" placeholder="Enter Address"  class="form-control"  />
+                </div>               
+                 <br/><br/>
+                  --%>
+                 <div class="form-group">
+                <form:input path="password" type="password" id="password" placeholder="Enter Password"  class="form-control"  />
+                </div>               
+                 <br/><br/>
+                 
+                 
+                <form:input path="role" type="hidden" id="role" value="ROLE_USER" class="form-control" />
+                <form:input path="enabled" type="hidden" id="enabled" value="TRUE" class="form-control" />
+                 
+                  <div class="form-group">
+                <form:input path="Country" type="text" id="country" placeholder="Enter Country"  class="form-control"  />
+                </div>               
                
                <label for="submit"></label>
                <button type="submit" class="btn btn-lg btn-info">Register</button>

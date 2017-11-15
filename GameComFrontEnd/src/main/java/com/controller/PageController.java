@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.niit.Dao.ProductDAO;
-import com.niit.model.User;
+import com.niit.model.Customer;
+
 
 @Controller
 public class PageController 
@@ -17,7 +18,7 @@ public class PageController
 	@RequestMapping("/register")
 	public String goToregister(Model model)
 	{
-		model.addAttribute("user",new User());
+		model.addAttribute("user",new Customer());
 		return "register";
 	}
 	

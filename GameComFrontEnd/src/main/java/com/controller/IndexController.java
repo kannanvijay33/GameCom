@@ -1,22 +1,38 @@
 package com.controller;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.Daoimpl.Userdaoimpl;
-import com.niit.model.User;
+import com.niit.Dao.ProductDAO;
+import com.niit.Dao.UserDao;
+import com.niit.model.Customer;
+import com.niit.model.Product;
 @Controller
-public class IndexController {
+public class IndexController 
+{
 	@Autowired
-	Userdaoimpl userdaoimpl;
+	UserDao userDao;
 	
+	@Autowired
+	ProductDAO productDAO;
+	
+/*	@RequestMapping("/userLogged")
+	public String userLogged()
+	{
+		return "index";
+	}*/
 
 	@RequestMapping({"/","/home"})
-	public String home() {
+	public String home(Model m)
+	{
+		List<Product> listProduct=productDAO.LatestretrieveProducts();
+    	m.addAttribute("listProduct",listProduct);
 		return "index";
 	}
 	
@@ -24,23 +40,20 @@ public class IndexController {
 	   public ModelAndView goToRegister()
 	   {
 		   ModelAndView mv=new ModelAndView(); 
-	       mv.addObject("user",new User());
+	       mv.addObject("user",new Customer());
 	       mv.setViewName("register");
 	       System.out.println("register");
 	       return mv;
 		   }
 	
 	   @RequestMapping(value="saveregister", method=RequestMethod.POST)
-	   public ModelAndView saveUser(@ModelAttribute("user")User user)
+	   public ModelAndView saveUser(@ModelAttribute("user")Customer user)
 	   {
 	       ModelAndView mv=new ModelAndView();
 		   user.setRole("ROLE_USER");
-		   userdaoimpl.insertUser(user);
+		   userDao.insertUser(user);
 		   System.out.println("User is registered successfully");
 		   mv.setViewName("index");
 		   return mv;
 	   }
-	   
-	   
-	   
-	}
+	 }

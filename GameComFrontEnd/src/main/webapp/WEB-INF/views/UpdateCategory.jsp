@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Category-GameComFrontEnd</title>
 </head>
@@ -20,18 +21,15 @@
 
 <tr>
 <td>Category ID</td>
-<!--<td><input type="text" name="catId"/></td>-->
 <td><form:input path="catId"/></td>
 </tr>
 
 <tr>
 <td>Category Name</td>
-<!--<td><input type="text" name="catName"/></td>-->
 <td><form:input path="catName"/></td>
 </tr>
 <tr>
 <td>Category Desc</td>
-<!--<td><input type="text" name="catDesc"/></td>-->
 <td><form:input path="catDesc"/></td>
 </tr>
 

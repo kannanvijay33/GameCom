@@ -2,7 +2,8 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib  uri="http://www.springframework.org/tags/form" prefix="spr" %>
-
+	<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+	
 <html>
 <head>
 
@@ -105,39 +106,6 @@ nav a:hover {
 	</div>
 
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-	<%-- <ul class="nav navbar-nav">
-	
-	<c:url value="/home" var="home" ></c:url>
-	<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li> 	
-
-	<c:url value="/product" var="prod"></c:url>
-	<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
-
-	<c:url value="/Category" var="cat"></c:url>
-	<li><a href="${cat}">Category</a></li>
-
-	<c:url value="/Supplier" var="sup"></c:url>
-	<li><a href="${sup}">Supplier</a></li>
-	
- 	<c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
-				<c:if test="${pageContext.request.userPrincipal.name!=null }">
-					<li><a href="${logoutUrl }"><span
-							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-				</c:if>
-				</ul>
-				
-		<ul class="nav navbar-right navbar-nav right0">
-				
-				<c:url value="/register" var="reg" ></c:url>
-	<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
- 
- 	<c:if test="${pageContext.request.userPrincipal.name == null }">
- 	<c:url value="/Login" var="log"></c:url>
-	<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
-	</c:if>
- 	</ul>
- --%>
  <ul class="nav navbar-left navbar-nav left0">
  <a>
 	<img src="${pageContext.request.contextPath}/resources/logo.png" class="logoImgStyle shiftLeft left5" height="70px" width="70px"/>	
@@ -163,6 +131,7 @@ nav a:hover {
  <c:if test="${pageContext.request.userPrincipal.name!=null }"> 
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <ul class="nav navbar-center navbar-nav center0">
+	
 	<c:url value="/product" var="prod"></c:url>
 	<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
 
@@ -173,14 +142,22 @@ nav a:hover {
 	<li><a href="${sup}">Supplier</a></li>
 	</ul>
 				</security:authorize>
-</c:if>
+</c:if>	
 
-<c:if test="${sessionScope.roleName=='user'}">
+<c:if test="${pageContext.request.userPrincipal.name!=null }"> 
 <security:authorize access="hasRole('ROLE_USER')">
-<li><a href="#"> PRODUCTS</a></li>
- <li><a  href="#">MY CART</a></li>
+<ul class="nav navbar-center navbar-nav center0">
+
+<c:url value="/MyProducts" var="product"></c:url>
+ <li><a  href="${product}"><i class="fa fa-product-hunt" aria-hidden="true"></i>My Products</a></li>
+
+<%-- <c:url value="/cart" var="cart"></c:url>
+ <li><a  href="${cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>MY CART</a></li> --%>
+ 
+</ul>
 </security:authorize>
 </c:if>
+
 <ul class="nav navbar-right navbar-nav right0">
  <c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
 				<c:if test="${pageContext.request.userPrincipal.name!=null }">

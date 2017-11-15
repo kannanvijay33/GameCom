@@ -17,7 +17,7 @@ background-color: white;
 .sliderimage
 	{
 		width:1500px !important;
-		height:350px !important;
+		height:450px !important;
 	}
 }
 </style>
@@ -32,12 +32,20 @@ background-color: white;
 <meta charset="utf-8">
 
 </head>
+<style>
+img.top {
+    vertical-align: text-top;
+}
+
+img.bottom {
+    vertical-align: text-bottom;
+}
+</style>
 <%@ include file="header.jsp"%> 
 <body>
 
 <div class="container-fluid">
 
-<h2><i>GameCom</i></h2>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <ol class="carousel-indicators">
 <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
@@ -47,21 +55,21 @@ background-color: white;
 <li data-target="#myCarousel5" data-slide-to="4" class="active"></li>
 </ol>
 
-<div class="carousel-inner" style="width:1500px height:350px">
+<div class="carousel-inner" style="width:1500px height:450px">
 
 <div class="item active">
 <img class="img-rounded img-responsive center-block sliderimage" 
-src="resources/img3.jpg" >
+src="resources/img10.png" >
 </div>
 
 <div class="item">
 <img class="img-rounded img-responsive center-block sliderimage"
-src="resources/img5.jpg">
+src="resources/img.png">
 </div>
 
 <div class="item">
 <img class="img-rounded img-responsive center-block sliderimage"          
-src="resources/img6.jpg" >
+src="resources/img6.png" >
 </div>
 
 <div class="item">
@@ -71,7 +79,7 @@ src="resources/img7.png" >
 
 <div class="item">
 <img class="img-rounded img-responsive center-block sliderimage"
-src="resources/img8.jpg" >
+src="resources/img8.png" >
 </div>
 </div>
 
@@ -87,9 +95,40 @@ src="resources/img8.jpg" >
 
 </div>
 </div>
+<br>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10">
+<div class="clear spaces10"></div>
+<c:if test="${empty listProduct}">
+<span>No Products available</span>
+
+</c:if>
+
+
+	<c:if test="${ !empty listProduct}">
+	<c:forEach  items="${listProduct}" var="pro">
+	<div class="col-lg-4 col-md-4 col-sm-12 spaces10">
+		<img src="${pageContext.request.contextPath}/resources/products/${pro.productId}.png" style="width:100px; height:100px"/>
+		
+		<br>
+		<span >${pro.productName}</span>
+		
+		<br>
+		<span >${pro.productDesc}</span>
+		
+		<br>
+		<span >${pro.price}</span>
+		
+	<c:url value="/viewProduct/${pro.productId}" var="view"/>
+     <a href="${view}">VIEW</a>
+     
+    
+	</c:forEach>
+	</c:if>
+	</div>
+
+
 </body>
 </html>
 
- 
+ <jsp:include page="footer.jsp"></jsp:include>
