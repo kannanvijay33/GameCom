@@ -11,23 +11,30 @@ public class Product
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	int productId;
+	private int productId;
 	
 	@NotEmpty(message="product name cannot be empty")
-	String productName;
+	private String productName;
 	
 	@NotEmpty(message="product name cannot be empty")
 	String productDesc;
-	int stock;
+	private int stock;
 	
 	@Min(value=50)
-	int price;
-	int catId;
-	int supplierId;
+	private int price;
+	private int catId;
+	private int supplierId;
+	private int Quantity;
 	
 	@Transient
-	MultipartFile pimage;
+	private MultipartFile pimage;
 	
+	public int getQuantity() {
+		return Quantity;
+	}
+	public void setQuantity(int quantity) {
+		Quantity = quantity;
+	}
 	public MultipartFile getPimage() {
 		return pimage;
 	}
@@ -76,6 +83,4 @@ public class Product
 	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
 	}
-	
-
 }

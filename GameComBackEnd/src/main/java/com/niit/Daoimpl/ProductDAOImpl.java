@@ -1,13 +1,14 @@
 package com.niit.Daoimpl;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.niit.Dao.ProductDAO;
-import com.niit.model.Category;
 import com.niit.model.Product;
 @Repository("ProductDAO")
 public class ProductDAOImpl implements ProductDAO
@@ -20,7 +21,7 @@ public class ProductDAOImpl implements ProductDAO
 	{
 		try
 		{
-		sessionFactory.getCurrentSession().save(product);
+		sessionFactory.getCurrentSession().saveOrUpdate(product);
 		return true;
 	    }
 	     catch(Exception e)
@@ -76,10 +77,19 @@ public class ProductDAOImpl implements ProductDAO
 			return false;
 		}
 	}
-	public Product findById(int catId) {
-		// TODO Auto-generated method stub
-		return null;
+	public void saveProduct(Product product) 
+	{
+		Session session=sessionFactory.getCurrentSession();
+		session.saveOrUpdate(product);
 	}
-
+	public List<Product> LatestretrieveProducts()
+	{
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("From Product p ORDER BY p.productId DESC");
+		query.setMaxResults(5);
+		List<Product> listProduct=(query).list();
+		session.close();
+		return listProduct;
+	}
 }
 

@@ -1,5 +1,4 @@
 package com.niit.model;
-
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -9,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 @Entity
-public class CustomerOrder {
+public class CustomerOrder
+{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -18,21 +19,16 @@ public class CustomerOrder {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cartid")
 	private Cart cart;
-	/*@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="customerid")*/
-	private int customer;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="customerid")
+	private Customer user;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="bid")
 	private BillingAddress billingaddress;
-	/*@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="sid")*/
-	private int shippingaddress;
-	public int getCustomer() {
-		return customer;
-	}
-	public void setCustomer(int customer) {
-		this.customer = customer;
-	}
+	@ManyToOne(cascade=CascadeType.ALL)
+	
+	@JoinColumn(name="sid")
+	private ShippingAddress shippingaddress;
 	public int getId() {
 		return id;
 	}
@@ -41,6 +37,12 @@ public class CustomerOrder {
 	}
 	public Date getDate() {
 		return date;
+	}
+	public BillingAddress getBillingaddress() {
+		return billingaddress;
+	}
+	public void setBillingaddress(BillingAddress billingaddress) {
+		this.billingaddress = billingaddress;
 	}
 	public void setDate(Date date) {
 		this.date = date;
@@ -51,30 +53,17 @@ public class CustomerOrder {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	/*public Customer getCustomer() {
-		return customer;
+	public Customer getUser() {
+		return user;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}*/
-	public BillingAddress getBillingaddress() {
-		return billingaddress;
+	public void setUser(Customer user) {
+		this.user = user;
 	}
-	public void setBillingaddress(BillingAddress billingaddress) {
-		this.billingaddress = billingaddress;
-	}
-	/*public ShippingAddress getShippingaddress() {
+	public ShippingAddress getShippingaddress() {
 		return shippingaddress;
 	}
 	public void setShippingaddress(ShippingAddress shippingaddress) {
 		this.shippingaddress = shippingaddress;
 	}
-	*/
-	
-	public int getShippingaddress() {
-		return shippingaddress;
-	}
-	public void setShippingaddress(int shippingaddress) {
-		this.shippingaddress = shippingaddress;
-	}
+
 }

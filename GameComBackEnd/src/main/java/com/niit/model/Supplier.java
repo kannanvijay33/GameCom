@@ -6,17 +6,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table
-public class Supplier {
+public class Supplier 
+{
 	@Id
 	@GeneratedValue
-	int supId;
-	String supName;
-	String supAddress;
-	public int getSupId() {
-		return supId;
+	private int supplierId;
+	private String supName;
+	private String supAddress;
+	
+	
+	public int getSupplierId() {
+		return supplierId;
 	}
-	public void setSupId(int supId) {
-		this.supId = supId;
+	public void setSupplierId(int supplierId) {
+		this.supplierId = supplierId;
 	}
 	public String getSupName() {
 		return supName;

@@ -1,6 +1,7 @@
 package com.niit.model;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,7 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class CartItem {
+public class CartItem 
+{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -26,6 +28,12 @@ public class CartItem {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public Product getProducts() {
+		return products;
+	}
+	public void setProducts(Product products) {
+		this.products = products;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
@@ -38,18 +46,11 @@ public class CartItem {
 	public void setTotalprice(double totalprice) {
 		this.totalprice = totalprice;
 	}
-	public Product getProducts() {
-		return products;
-	}
-	public void setProducts(Product products) {
-		this.products = products;
-	}
 	public Cart getCart() {
 		return cart;
 	}
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
 
 }

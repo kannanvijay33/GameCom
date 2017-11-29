@@ -9,8 +9,7 @@ public interface ProductDAO
 	
 	public Product getProduct(int productId);
 	public boolean updateProduct(Product  Product);
-
+	public void saveProduct(Product  Product);
+	public List<Product> LatestretrieveProducts();
 	
-
 }
-

@@ -10,5 +10,6 @@ public interface CartItemDao {
 	void aftercheckout(int cartid);
 	Cart getCart(int id);
 	int getcartcount(int id);
-
 }
+
+

@@ -13,21 +13,21 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.Dao.UserDao;
-import com.niit.Daoimpl.Userdaoimpl;
+import com.niit.model.BillingAddress;
+import com.niit.model.Cart;
+import com.niit.model.CartItem;
 import com.niit.model.Category;
+import com.niit.model.Customer;
+import com.niit.model.CustomerOrder;
 import com.niit.model.Product;
+import com.niit.model.ShippingAddress;
 import com.niit.model.Supplier;
-import com.niit.model.User;
-
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.niit")
 
 public class HiberConfig {
 	private static final String SessionFactory = null;
-	private Object sessionFactory;
-
 	@Autowired
 	@Bean(name = "dataSource")
 	public DataSource getH2data() {
@@ -53,24 +53,31 @@ public class HiberConfig {
 
 	@Autowired
 	@Bean(name = "sessionFactory")
-	public SessionFactory getSession(DataSource datasource) {
+	public SessionFactory getSession(DataSource datasource)
+	{
 		LocalSessionFactoryBuilder sb = new LocalSessionFactoryBuilder(datasource);
 		sb.addProperties(getHiberProps());
-		sb.addAnnotatedClass(User.class);
+		sb.addAnnotatedClass(BillingAddress.class);
+		sb.addAnnotatedClass(Cart.class);
+		sb.addAnnotatedClass(CartItem.class);
 		sb.addAnnotatedClass(Category.class);
-		sb.addAnnotatedClass(Supplier.class);
+		sb.addAnnotatedClass(Customer.class);
+		sb.addAnnotatedClass(CustomerOrder.class);
 		sb.addAnnotatedClass(Product.class);
+		sb.addAnnotatedClass(ShippingAddress.class);
+		sb.addAnnotatedClass(Supplier.class);
+	
 		SessionFactory sessionFactory = sb.buildSessionFactory();
 		System.out.println("Session Factory is created");
 		return sessionFactory;
 	}
 
-	@Autowired
+	/*@Autowired
 	@Bean(name="Userdaoimpl")
 	public UserDao getUserData(SessionFactory sessionFac) 
 	{
-		return new Userdaoimpl(sessionFac);
-	}
+		return new UserDaoImpl(sessionFac);
+	}*/
 	
 	@Autowired
 	@Bean

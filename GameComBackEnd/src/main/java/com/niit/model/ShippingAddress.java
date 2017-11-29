@@ -1,41 +1,36 @@
 package com.niit.model;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class ShippingAddress {
+public class ShippingAddress
+{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@NotEmpty
+	
 	private String doorno;
-	@NotEmpty
+	
 	private String streetname;
-	@NotEmpty
+	
 	private String city;
-	@NotEmpty
+	
 	private String state;
-	@NotEmpty
+	
 	private String country;
-	@NotEmpty
+	
 	private String zipcode;
 	@ManyToOne
 	@JoinColumn(name="cid")
-	private Customer customer;
+	private Customer user;
 	
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
 	public int getId() {
 		return id;
 	}
@@ -78,6 +73,11 @@ public class ShippingAddress {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+	public Customer getUser() {
+		return user;
+	}
+	public void setUser(Customer user) {
+		this.user = user;
+	}
 	
-
 }

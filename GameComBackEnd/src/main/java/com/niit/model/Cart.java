@@ -1,6 +1,6 @@
 package com.niit.model;
-
 import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,16 +12,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Cart {
+public class Cart
+{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private double grandtotal;
 	@OneToOne
 	@JoinColumn(name="customer_id")
-	private Customer customer;
-	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER)
-	private List<CartItem> cartitems;
+	private Customer user;
 	public int getId() {
 		return id;
 	}
@@ -34,11 +33,11 @@ public class Cart {
 	public void setGrandtotal(double grandtotal) {
 		this.grandtotal = grandtotal;
 	}
-	public Customer getCustomer() {
-		return customer;
+	public Customer getUser() {
+		return user;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setUser(Customer user) {
+		this.user = user;
 	}
 	public List<CartItem> getCartitems() {
 		return cartitems;
@@ -46,5 +45,7 @@ public class Cart {
 	public void setCartitems(List<CartItem> cartitems) {
 		this.cartitems = cartitems;
 	}
-	
+	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER)
+	private List<CartItem> cartitems;
+
 }

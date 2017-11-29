@@ -1,30 +1,32 @@
 package com.niit.model;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Entity
-public class BillingAddress {
+
+public class BillingAddress 
+{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@NotEmpty
+	
 	private String doorno;
-	@NotEmpty
+	
 	private String streetname;
-	@NotEmpty
+	
 	private String city;
-	@NotEmpty
+	
 	private String state;
-	@NotEmpty
-	private String country;
-	@NotEmpty
-	private String zipcode;
 
+	private String country;
+	
+	private String zipcode;
 	public int getId() {
 		return id;
 	}
@@ -67,6 +69,6 @@ public class BillingAddress {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	
-}
 
+
+}

@@ -23,7 +23,7 @@ public class SupplierTest
 	public void addSupplierTest()
 	{
 		Supplier supplier=new Supplier();
-		supplier.setSupId(102);
+		supplier.setSupplierId(101);
 		supplier.setSupName("Game");
 		supplier.setSupAddress("India");
 		assertTrue(supplierDAO.addSupplier(supplier));

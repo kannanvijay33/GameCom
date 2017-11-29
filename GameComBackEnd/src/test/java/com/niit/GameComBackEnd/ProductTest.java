@@ -1,4 +1,4 @@
-package com.niit.GameComBackEnd;
+/*package com.niit.GameComBackEnd;
 
 import static org.junit.Assert.*;
 
@@ -35,15 +35,15 @@ public class ProductTest
 		Product product=new Product();
 		//product.setProductId(150);
 		product.setProductName("Game");
-		product.setProductDesc("Gaming CD's");
-		product.setStock(10);
+		product.setDescription("description");
+		product.set
 		product.setPrice(1500);
 		product.setCatId(1002);
 		product.setSupplierId(2503);
 		
 		assertTrue("Problem in Insertion",productDAO.addProduct(product));
 	}
-	/*@Ignore
+	@Ignore
 	
 	public void retrieveProductTest()
 	{
@@ -57,6 +57,7 @@ public class ProductTest
 			System.out.println("Product Name:"+product.getProductName());
 			System.out.println("Product Desc:"+product.getProductDesc());
 		}
-	}*/
+	}
 
 }
+*/

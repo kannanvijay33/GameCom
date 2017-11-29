@@ -1,124 +1,122 @@
 package com.niit.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
-public class Customer {
+
+public class Customer implements Serializable
+{
+
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	@NotEmpty
-	private String fname;
-	@NotEmpty
-	private String lname;
-	@Column(unique = true, nullable = false)
-	@Email
 	private String email;
-	@NotEmpty
-	@Size(min = 10, max = 10)
+	private String name;
 	private String phone;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	@Valid
-	private User user;
+	private String password;
+	private String role;
+	private String country;
+	private boolean enabled;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "billingaddress_id")
 	@Valid
 	private BillingAddress billingaddress;
-	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
 	private List<ShippingAddress> shippingaddress;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
 	@Valid
 	private Cart cart;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFname() {
-		return fname;
-	}
-
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
-	public String getLname() {
-		return lname;
-	}
-
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	
+	
 	public BillingAddress getBillingaddress() {
 		return billingaddress;
 	}
-
 	public void setBillingaddress(BillingAddress billingaddress) {
 		this.billingaddress = billingaddress;
 	}
-
-	
-
 	public List<ShippingAddress> getShippingaddress() {
 		return shippingaddress;
 	}
-
 	public void setShippingaddress(List<ShippingAddress> shippingaddress) {
 		this.shippingaddress = shippingaddress;
 	}
-
 	public Cart getCart() {
 		return cart;
 	}
-
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getName() 
+	{
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public boolean Enabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
+
+	
+	
 
 }
