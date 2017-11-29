@@ -1,14 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.niit.model.Supplier"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.niit.model.Product "
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
      <%@ taglib  uri="http://www.springframework.org/tags/form" prefix= "form" %>
+    <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
     <%@ include file="header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<!-- Latest compiled and minified CSS -->
+   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -49,51 +50,40 @@ table.roundedCorners tr:last-child > td {
 </style>
 
 </head>
+
 <body>
-<c:url value="/updateSupplier" var="update"/>
-<form:form action="${update}" modelAttribute="supplier">
-<table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
-<tr >
-<td colspan="2"  class="text-center" style="color:blue";>Supplier Module</td>
-</tr>
-<tr>
-
-<!--<td><input type="text" name="catId"/></td>-->
-<td><form:hidden path="supId"/></td>
-</tr>
-<tr>
-<td>Supplier Name</td>
-<!--<td><input type="text" name="catName"/></td>-->
-<td><form:input path="supName"/></td>
-</tr>
-<tr>
-<td>Supplier Address</td>
-<!--<td><input type="text" name="catDesc"/></td>-->
-<td><form:input path="supAddress"/></td>
-</tr>
-<tr>
-<td colspan="2">
-<center><input type="submit" class="btn" value="UpdateSupplier"/></center>
-</td>
-</tr>
-</table>
-</form:form>
 <table class="roundedCorners" style="margin:auto">
-<tr bgcolor="gray">
-<td>Supplier ID</td>
-<td>Supplier Name</td>
-<td>Supplier Address</td>
-<td>Operation</td>
-</tr>
-<c:forEach items="${SupplierList}" var="supplier">
-<tr bgcolor="white">
-<td>${supplier.supplierId}</td>
-<td>${supplier.supName}</td>
-<td>${supplier.supAddress}</td>
 
+<tr bgcolor="gray">
+<td>Product Name</td>
+<td>Product Description</td>
+<td>Stock</td>
+<td>Price</td>
+<td>CatId</td>
+<td>SupplierId</td>				
+<td>Operation</td>
+
+</tr>
+
+<c:forEach items="${productList}" var="product">
+<tr bgcolor="white">
+<c:url value="/viewProduct/${product.productId}" var="prod"></c:url>
+<td><a href="${prod}">${product.productName}</a></td>
+<td>${product.productDesc}</td>
+<td>${product.stock}</td>
+<td>${product.price}</td>
+<td>${product.catId}</td>
+<td>${product.supplierId}</td>
+
+				
 <td>
-<c:url value="/admin/deleteSupplier/${supplier.supplierId}" var="del"/><a href="${del}">DELETE</a>
-<c:url value="/admin/updateSupplier/${supplier.supplierId}" var="update"/><a href="${update}">UPDATE</a>
+	<ol>
+	<c:url value="/viewProduct/${product.productId}" var="view"/>
+	<a href="${view}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+	</ol>
+
+	
+	
 </td>
 
 </tr>

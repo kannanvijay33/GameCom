@@ -1,9 +1,11 @@
 package com.controller;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.niit.Dao.CategoryDAO;
 import com.niit.Dao.ProductDAO;
-import com.niit.Dao.SupplierDAO;
 import com.niit.model.Category;
 import com.niit.model.Product;
-import com.niit.model.Supplier;
+
 @Controller
 public class ProductController 
 
@@ -28,27 +30,28 @@ public class ProductController
 	@Autowired
 	CategoryDAO categoryDAO;
 	
-	@Autowired
-	SupplierDAO supplierDAO;
-	
-	@RequestMapping(value="product",method=RequestMethod.GET)
+	@RequestMapping(value="/product",method=RequestMethod.GET)
 	public String showProduct(Model m)
 	{
 		Product product=new Product();
-		m.addAttribute(product);
-        m.addAttribute("category",this.getCategories());
-        List<Product> listProduct=productDAO.retrieveProducts();
-        m.addAttribute("ProductList",listProduct);
-       	return "Product";
+		m.addAttribute(product );
+        m.addAttribute("categoryList",this.getCategories());
+        List<Product> listproduct=productDAO.retrieveProducts();
+		 m.addAttribute("productList",listproduct);
+		 
+	return "Product";
 	}
-	
-	@RequestMapping(value="AddProduct",method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product")Product product,Model m)
-	{
-		System.out.println(product.getProductName());
-		productDAO.addProduct(product);
-		return "Product";
-	}
+	 @RequestMapping(value="/admin/updateProduct/{productId}",method=RequestMethod.GET)
+	 public String updateProduct(@PathVariable("productId")int productid,Model m)
+     {
+		 Product product=productDAO.getProduct(productid);
+		 m.addAttribute("product",product);
+		 List<Product> listproduct=productDAO.retrieveProducts();
+		 m.addAttribute("productList",listproduct);
+		 m.addAttribute("categoryList",this.getCategories());
+	        	return "UpdateProduct";
+	 	 
+	     }
 	
 	public LinkedHashMap<Integer,String> getCategories()
 	{
@@ -58,77 +61,16 @@ public class ProductController
 		{
 			categoriesList.put(category.getCatId(),category.getCatName());
 		}
+	
 		return categoriesList;
-	}
-	
-	public LinkedHashMap<Integer,String> getSupplieries()
-	{
-		List<Supplier> listSupplier=supplierDAO.retrieveSupplier();
-		LinkedHashMap<Integer,String> supplierList=new LinkedHashMap<Integer,String>();
-		for(Supplier supplier:listSupplier)
-		{
-			supplierList.put(supplier.getSupId(),supplier.getSupName());
-		}
-		return supplierList;
-	}
-	
-	@RequestMapping(value="/updateProduct/{productId}",method=RequestMethod.GET)
-	   public String updateCategory(@PathVariable("productId")int productId,Model m)
-    {
-		Product product=productDAO.getProduct(productId);
-		m.addAttribute("product",product);
-		System.out.println(product.getProductName());
-		List<Product> listProduct=productDAO.retrieveProducts();
-		m.addAttribute("ProductList",listProduct);
-		return "UpdateProduct";
-    
-      }
-  @RequestMapping(value="/UpdateProduct",method=RequestMethod.POST)
-  public String updateCategory(@ModelAttribute("product")Product product,@RequestParam("pimage")MultipartFile fileDetail,Model m)
-    {
-	  System.out.println(product.getProductName());
-	  productDAO.updateProduct(product);
-	  String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\products\\";
-		
-		String totalFileWithPath=path+String.valueOf(product.getProductId())+".jpg";
-		
-		File productImage=new File(totalFileWithPath);
-
-		if(!fileDetail.isEmpty())
-		{
-			try
-			{
-				byte fileBuffer[]=fileDetail.getBytes();
-				FileOutputStream fos=new FileOutputStream(productImage);
-				BufferedOutputStream bs=new BufferedOutputStream(fos);
-				bs.write(fileBuffer);
-				bs.close();
-			}
-			catch(Exception e)
-			{
-				m.addAttribute("FileException",e.getMessage());
-			}
-		}
-		else
-		{
-			m.addAttribute("error","Problem in File Uploading");
-		}
-		
-	  List<Product> listProduct=productDAO.retrieveProducts();
-	  m.addAttribute("ProductList",listProduct);
-	  return "UpdateProduct";
-    }
-	
-  	@RequestMapping(value="InsertProduct",method=RequestMethod.POST)
+}
+	@RequestMapping(value="/admin/InsertProduct",method=RequestMethod.POST)
 	public String insertProduct(@ModelAttribute("product")Product product,@RequestParam("pimage")MultipartFile fileDetail,Model m)
 	{
-	  productDAO.addProduct(product);
+		productDAO.addProduct(product);
 		String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\products\\";
-		
 		String totalFileWithPath=path+String.valueOf(product.getProductId())+".jpg";
-		
 		File productImage=new File(totalFileWithPath);
-
 		if(!fileDetail.isEmpty())
 		{
 			try
@@ -141,7 +83,52 @@ public class ProductController
 			}
 			catch(Exception e)
 			{
-				m.addAttribute("FileException",e.getMessage());
+				m.addAttribute("error",e.getMessage());
+			}
+		}
+		else
+		{
+			m.addAttribute("error","Problem in File Uploading");
+		}
+		Product product1=new Product();
+		m.addAttribute(product1);
+		 m.addAttribute("categoryList",this.getCategories());
+	        List<Product> listproduct=productDAO.retrieveProducts();
+			 m.addAttribute("productList",listproduct);
+			 
+		return "Product";
+		
+		
+			}
+	@RequestMapping(value="userHome")
+	public String showProducts(Model m)
+	{
+		List<Product> listProducts=productDAO.retrieveProducts();
+		m.addAttribute("productList",listProducts);
+		
+		return "UserHome";
+	}
+	@RequestMapping(value="/admin/updateProduct",method=RequestMethod.POST)
+	 public String updateProduct(@ModelAttribute("product")Product product,@RequestParam("pimage")MultipartFile fileDetail,Model m)
+		
+    {
+		productDAO.updateProduct(product);
+		String path="D:\\Eclipse\\GameComFrontEnd\\src\\main\\webapp\\WEB-INF\\resources\\products\\";
+		String totalFileWithPath=path+String.valueOf(product.getProductId())+".jpg";
+		File productImage=new File(totalFileWithPath);
+		if(!fileDetail.isEmpty())
+		{
+			try
+			{
+				byte fileBuffer[]=fileDetail.getBytes();
+				FileOutputStream fos=new FileOutputStream(productImage);
+				BufferedOutputStream bs=new BufferedOutputStream(fos);
+				bs.write(fileBuffer);
+				bs.close();
+			}
+			catch(Exception e)
+			{
+				m.addAttribute("error",e.getMessage());
 			}
 		}
 		else
@@ -149,43 +136,43 @@ public class ProductController
 			m.addAttribute("error","Problem in File Uploading");
 		}
 		
-		return "Product";
-	}
+		Product product1=new Product();
+			m.addAttribute(product1);
+			List<Product> listProduct=productDAO.retrieveProducts();
+			m.addAttribute("productList",listProduct);
+			
+			return "Product";
+}
+	
 
-  	@RequestMapping(value="/deleteProduct/{productId}",method=RequestMethod.GET)
+    @RequestMapping(value="/admin/deleteProduct/{productId}",method=RequestMethod.GET)
     public String deleteProduct(@PathVariable("productId")int productId,Model m)
     {
-  		Product product=productDAO.getProduct(productId);
-  		productDAO.deleteProduct(product);
-  		Product product1=new Product();
-  		m.addAttribute(product1);
-  		List<Product> listProduct=productDAO.retrieveProducts();
-    	m.addAttribute("ProductList",listProduct);
-    	return "Product";
-  
+    	Product product=productDAO.getProduct(productId);
+    	productDAO.deleteProduct(product);
+    	Product product1=new Product();
+			m.addAttribute(product1);
+			List<Product> listProduct=productDAO.retrieveProducts();
+			m.addAttribute("productList",listProduct);
+			
+			return "Product";
+	 
     }
-  	
-  	@RequestMapping(value="/viewProduct/{productId}",method=RequestMethod.GET)
-  	public String viewProduct(@PathVariable("productId")int productId,Model m)
-  	{
-  		Product product= productDAO.getProduct(productId);
-  		m.addAttribute("product", product);
-  		return "viewproduct";
-  		/*m.addAttribute(product);
-  		int catId = product.getCatId();
-  		Category category = categoryDAO.getCategory(catId);
-  		m.addAttribute(category);
-  		int supId = product.getSupplierId();
-  		Supplier supplier = supplierDAO.getSupplier(supId);
-  		m.addAttribute(supplier);
-  		return "ProductDetails";*/
-  	}
-  	
-  	@RequestMapping(value="/MyProducts",method=RequestMethod.GET)
-  	public String MyProducts(@PathVariable("productId")int productId,Model m)
-  	{
-  		Product product= productDAO.getProduct(productId);
-  		m.addAttribute("product", product);
-  		return "MyProducts";
-  	}
-  	}
+   
+    @RequestMapping(value="/viewProduct/{productId}",method=RequestMethod.GET)
+    public String getProduct(@PathVariable("productId")int getproductId,Model m)
+    {
+    	Product pro=productDAO.getProduct(getproductId);
+    	m.addAttribute("pro",pro);
+    	return "viewproduct";
+}
+    @RequestMapping(value="/ProductList",method=RequestMethod.GET)
+    public String getProductList(Model m)
+    {
+    	List<Product> listproduct=productDAO.retrieveProducts();
+		 m.addAttribute("productList",listproduct);
+    	return "ProductList";
+    }
+}
+
+

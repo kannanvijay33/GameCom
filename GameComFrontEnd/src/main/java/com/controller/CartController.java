@@ -62,7 +62,8 @@ public class CartController
 	}
 
 	@RequestMapping("/cart/plus/{id}")
-	public String plus(@PathVariable int id, Model model) {
+	public String plus(@PathVariable int id, Model model) 
+	{
 		Product product = productDao.getProduct(id);
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = user.getUsername();
@@ -86,13 +87,14 @@ public class CartController
 	}
 
 @RequestMapping("/cart/addtocart/{id}")
-public String addtocart(@PathVariable int id, @RequestParam int units, Model model) {
+public String addtocart(@PathVariable int id, @RequestParam int units, Model model) 
+{
 	Product product = productDao.getProduct(id);
 	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	String username = user.getUsername();
 	Customer customer = userDaoImpl.customerbyemail(username);
 	Cart cart = customer.getCart();
-	System.out.println(cart.getCartitems().size());
+	//System.out.println(cart.getCartitems().size());
 	List<CartItem> cartitems = cart.getCartitems();
 	for (CartItem cartitem : cartitems) {
 		if(cartitem.getProducts().getCatId()==id){
@@ -122,11 +124,10 @@ public String addtocart(@PathVariable int id, @RequestParam int units, Model mod
 		return "redirect:/cart/getcart";
 	else 
 		return "redirect:/all/products/viewproduct/{id}";
-}
 
+}
 @RequestMapping("/cart/getcart")
-public String getcart(HttpSession session,Model model) 
-{
+public String getcart(HttpSession session,Model model) {
 	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	String username = user.getUsername();
 	System.out.println(username);

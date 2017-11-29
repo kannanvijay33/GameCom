@@ -108,7 +108,7 @@ nav a:hover {
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-left navbar-nav left0">
  <a>
-	<img src="${pageContext.request.contextPath}/resources/logo.png" class="logoImgStyle shiftLeft left5" height="70px" width="70px"/>	
+	<img src="${pageContext.request.contextPath}/resources/logo2.png" class="logoImgStyle shiftLeft left5" height="100px" width="150px"/>	
 	</a>
 	</ul>
 	
@@ -117,8 +117,13 @@ nav a:hover {
  <li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
  </ul>
  
+ 
+ 
  <ul class="nav navbar-right navbar-nav right0">
  <c:if test="${pageContext.request.userPrincipal.name==null }">
+ 
+<c:url value="/ProductList" var="product"></c:url>
+ <li><a  href="${product}"><i class="fa fa-product-hunt" aria-hidden="true"></i> Products list </a></li>
 
 <c:url value="/Login" var="log"></c:url>
 <li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
@@ -148,8 +153,8 @@ nav a:hover {
 <security:authorize access="hasRole('ROLE_USER')">
 <ul class="nav navbar-center navbar-nav center0">
 
-<c:url value="/MyProducts" var="product"></c:url>
- <li><a  href="${product}"><i class="fa fa-product-hunt" aria-hidden="true"></i>My Products</a></li>
+<c:url value="/ProductList" var="product"></c:url>
+ <li><a  href="${product}"><i class="fa fa-product-hunt" aria-hidden="true"></i> Products list </a></li>
 
 <%-- <c:url value="/cart" var="cart"></c:url>
  <li><a  href="${cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>MY CART</a></li> --%>

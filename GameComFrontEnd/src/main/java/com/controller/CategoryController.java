@@ -16,23 +16,6 @@ public class CategoryController
 {
 	@Autowired
 	CategoryDAO categoryDAO;
-	/*@RequestMapping(value="AddCategory",method=RequestMethod.POST)
-	public String addCategory(@RequestParam("catName") String catName,@RequestParam("catDesc") String catDesc,Model m)
-	{
-		System.out.println("in controller");
-		Category category=new Category();
-		//category.setCatId(catId);
-		System.out.println("Details:"+ catName + " "+ catDesc);
-		category.setCatName(catName);
-		category.setCatDesc(catDesc);
-		
-		Boolean var=categoryDAO.addCategory(category);
-		System.out.println(var);
-		List<Category> listCategory=categoryDAO.retrieveCategory();
-		m.addAttribute("CategoryList",listCategory);
-		
-		return "Category";
-	}*/
 	
 	@RequestMapping(value="/AddCategory",method=RequestMethod.POST)
 	public String addCategory(@ModelAttribute("category")Category category,Model m)
@@ -54,7 +37,7 @@ public class CategoryController
 		m.addAttribute("CategoryList",listCategory);
 		return "Category";
 	}
-	 @RequestMapping(value="/updateCategory/{catId}",method=RequestMethod.GET)
+	 @RequestMapping(value="/admin/updateCategory/{catId}",method=RequestMethod.GET)
 	 public String updateCategory(@PathVariable("catId")int catId,Model m)
      {
 		 Category category=categoryDAO.getCategory(catId);
@@ -64,7 +47,7 @@ public class CategoryController
 	 		return "UpdateCategory";
 	 	 
 	     }
-	 @RequestMapping(value="/updateCategory",method=RequestMethod.POST)
+	 @RequestMapping(value="/admin/updateCategory",method=RequestMethod.POST)
 	 public String updateCategory(@ModelAttribute("category")Category category,Model m)
      {
 		 categoryDAO.updateCategory(category);
@@ -76,7 +59,7 @@ public class CategoryController
      }
 	
 
-     @RequestMapping(value="/deleteCategory/{catId}",method=RequestMethod.GET)
+     @RequestMapping(value="/admin/deleteCategory/{catId}",method=RequestMethod.GET)
      public String deleteCategory(@PathVariable("catId")int catId,Model m)
      {
     	 Category category=categoryDAO.getCategory(catId);

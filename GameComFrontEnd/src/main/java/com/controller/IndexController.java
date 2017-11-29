@@ -22,11 +22,11 @@ public class IndexController
 	@Autowired
 	ProductDAO productDAO;
 	
-/*	@RequestMapping("/userLogged")
+	@RequestMapping("/userLogged")
 	public String userLogged()
 	{
 		return "index";
-	}*/
+	}
 
 	@RequestMapping({"/","/home"})
 	public String home(Model m)
@@ -52,8 +52,16 @@ public class IndexController
 	       ModelAndView mv=new ModelAndView();
 		   user.setRole("ROLE_USER");
 		   userDao.insertUser(user);
-		   System.out.println("User is registered successfully");
 		   mv.setViewName("index");
 		   return mv;
 	   }
+	   
+	   @RequestMapping(value="aboutus", method=RequestMethod.GET)
+	   public ModelAndView goToaboutus()
+	   {
+		   ModelAndView mv=new ModelAndView(); 
+	      
+	       mv.setViewName("aboutus");
+	       return mv;
+		   }
 	 }
