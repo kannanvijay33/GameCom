@@ -7,7 +7,7 @@ public class Category
 	
 	@Id
 	@GeneratedValue
- int catId;
+	int catId;
 	 String  catName,catDesc;
 	public int getCatId() {
 		return catId;
