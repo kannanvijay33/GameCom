@@ -48,12 +48,64 @@ table.roundedCorners tr:last-child > td {
 .btn{background-colou: r#f44336;}
 
 </style>
+
 </head>
+<script>
+function formCategory() {
+var catName = document.getElementById('catName');
+var catDesc = document.getElementById('catDesc');
+if (notEmpty(catName, " Category Name Should not be empty")) 
+{
+	
+	if (isAlphabet(catName, "Please enter only letters for Category Name "))
+		{
+		if (notEmpty(catDesc, "Description Should not be empty")) 
+		{
+			if (isAlphanumeric(catDesc, "Please enter alpha-numeric characters for Description"))
+				{
+		return true ;
+				}
+		}
+		}
+		}
+return false;
+}
+function notEmpty(elem, helperMsg) {
+	if (elem.value.length == 0) {
+		alert(helperMsg);
+		elem.focus(); // set the focus to this input
+		return false;
+	}
+	return true;
+}
+function isAlphabet(elem, helperMsg) {
+	var alphaExp = /^[a-z A-Z]+$/;
+	if (elem.value.match(alphaExp)) {
+		return true;
+	} else {
+		alert(helperMsg);
+		elem.focus();
+		return false;
+	}
+}
+function isAlphanumeric(elem, helperMsg) {
+	var alphaExp = /^[0-9a-zA-Z]+$/;
+	if (elem.value.match(alphaExp)) {
+		return true;
+	} else {
+		alert(helperMsg);
+		elem.focus();
+		return false;
+	}
+}
+	
+</script>
+
 <body>
 
 <!--<form action="AddCategory" method="post">-->
 <c:url value="/admin/updateCategory" var="update"/>
-<form:form action="${update}" modelAttribute="category">
+<form:form action="${update}" modelAttribute="category" onsubmit="return formCategory()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
 <td colspan="2" class="text-center" style="color:blue";>Category Module</td>
@@ -94,12 +146,18 @@ table.roundedCorners tr:last-child > td {
 <td>${category.catDesc}</td>
 
 <td>
-<a href="<c:url value="/admin/deleteCategory/${category.catId}"/>">DELETE</a>
-<a href="<c:url value="/admin/updateCategory/${category.catId}"/>">UPDATE</a>
+<ul>
+<c:url value="/admin/deleteCategory/${category.catId}" var="del"/>
+<a href="${del}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+</ul>
+
+<ul>
+<c:url value="/admin/updateCategory/${category.catId}" var="update"/>
+<a href="${update}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+</ul>
 </td>
 </tr>
 </c:forEach>
 </table>
 </body>
 </html>
- <%@ include file="footer.jsp"%>

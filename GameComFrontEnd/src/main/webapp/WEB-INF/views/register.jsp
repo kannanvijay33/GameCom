@@ -5,79 +5,6 @@
 <!DOCTYPEhtmlPUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style>
-
-
-body{
-  background:	#FF4500;
-}
-form{
-  background:#FF4500;
-  padding:2em;
-  max-width:400px;
-  margin:100px auto 0;
-}
-
-input{
-  display:block;
-  box-sizing:border-box;
-  width:100%;
-  outline:none;
-}
-input[type="text"],
-input[type="password"]{
-  padding:15px 20px;
-  width:100%;
-  background:#e6e6e6;
-  border:#fff;
-}
-input[type="text"]:focus,
-input[type="password"]:focus{
-  background:#fff;
-  border-bottom:1px solid #222;
-}
-input::-webkit-input-placeholder{
-  text-align:center;
-  text-transform:uppercase;
-}
-p{
-  position:relative;
-}
-span{
-  position:absolute;
-  background:#222;
-  width:200px;
-  padding:7px 10px;
-  color:#FF4500;
-  top:0;
-  left:105%;
-}
-
-span:after{
-  position:absolute;
-  border:solid transparent;
-  content: " ";
-  height:0;
-  width:0;
-  right:100%;
-  top:50%;
-  border-right-color:#222;
-  border-width:8px;
-  margin-top:-8px;
-  }
-input[type="submit"]{
-  padding:20px 10px;
-  border:none;
-  background:	#FF4500;
-  color:#FF4500;
-  font-weight:bolder;
-  cursor:pointer;
-}
-#username >span{
-  display:block;
-}
-</style>
-
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -85,53 +12,88 @@ input[type="submit"]{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register-GameComFrontEnd</title>
-
-
-  
-</head>
-<body>
-
-<script type="text/javascript">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
 	function formRegister() {
 		// Make quick references to our fields
 		
-		var username = document.getElementById('user_name_fr');
-		var email = document.getElementById('email_id_fr');
-		var password = document.getElementById('password_fr');
-		var phone = document.getElementById('contactNumber_fr');
-		//var address = document.getElementById('address_fr');
+		var name = document.getElementById('name');
+		var email = document.getElementById('email');
+		var phone = document.getElementById('phone');
+		var password = document.getElementById('password');
+		var doorno = document.getElementById('billingaddress.doorno');
+		var streetname = document.getElementById('billingaddress.streetname');
+		var city = document.getElementById('billingaddress.city');
+		var state = document.getElementById('billingaddress.state');
+		var country = document.getElementById('billingaddress.country');
+		var zipcode = document.getElementById('billingaddress.zipcode');
 	
 		// Check each input in the order that it appears in the form!
-		
-					if (notEmpty(user_name_fr, "Username Should not be empty")) {
-							if (isAlphabet(username,
-									"Please enter only letters for Username")) {
-								if (notEmpty(email,
-								"EmailId Should not be empty")) {
-									if(emailValidator(email, "Please Enter a valid Email id")){ 
-								if (notEmpty(password,
-										"password Should not be empty")) {
-									if (isAlphanumeric(password,
-											"Numbers and Letters Only for Passwords")) {
-										if (notEmpty(phone,
-												"PhoneNumber Should not be empty")) {
-											if (isNumeric(phone,
-													"Please enter only number for PhoneNumber"))
-												{
-													return true;
-												}
-											}
-										}
-									}
-								}
-							}
-						}
+	if (notEmpty(name, "Username Should not be empty")) 
+	{
+	 if (isAlphabet(name,"Please enter only letters for Username")) 
+	 {
+	  if (notEmpty(email,"EmailId Should not be empty")) 
+	  {
+	   if(emailValidator(email,"Please Enter a valid Email id"))
+	   {
+		if (notEmpty(phone,"PhoneNumber Should not be empty")) 
+		{
+		 if (isNumeric(phone,"Please enter only number for PhoneNumber"))
+		 {
+		  if (notEmpty(password,"password Should not be empty"))
+		  {
+		   if (isAlphanumeric(password,"Numbers and Letters Only for Passwords")) 
+		   {
+			 if (notEmpty(doorno,"doorno Should not be empty")) 
+			  {
+				 if (isNumeric(doorno,"Please enter only number for doorno"))
+			   
+			 if (notEmpty(streetname, "streetname Should not be empty"))
+				 {
+				 if (isAlphabet(streetname,"Please enter only letters for streetname")) 
+					 {
+					 if (notEmpty(city, "city Should not be empty"))
+						 {
+						 if (isAlphabet(city,"Please enter only letters for city")) 
+						 }
+					 if (notEmpty(state, "state Should not be empty"))
+						 {
+						 if (isAlphabet(state,"Please enter only letters for state")) 
+							 {
+						 		if (notEmpty(country, "country Should not be empty"))
+							 {
+						 			 if (isAlphabet(country,"Please enter only letters for country")) 
+						 				 {
+						 				if (notEmpty(zipcode,"zipcode Should not be empty")) 
+						 					{
+						 					if (isNumeric(zipcode,"Please enter only number for zipcode"))
+						 						{
+						 						return true;
+						 						}
+						 					}
+						 					}
+						 				 }
+						 				 }
+							 }
+						 }
+					 }
+				 }
+		   }
+		  }
+		 }
+		} 
+	}
+	   }
+	  }
   }
 		return false;
 	}
   
-  function notEmpty(elem, helperMsg) {
-		if (elem.value.length == 0) {
+  function notEmpty(elem, helperMsg) 
+  {
+		if (elem.value.length == 0) 
+		{
 			alert(helperMsg);
 			elem.focus(); // set the focus to this input
 			return false;
@@ -139,9 +101,11 @@ input[type="submit"]{
 		return true;
 	}
   
-	function isNumeric(elem, helperMsg) {
+	function isNumeric(elem, helperMsg) 
+	{
 		var numericExpression = /^[0-9]+$/;
-		if (elem.value.match(numericExpression)) {
+		if (elem.value.match(numericExpression)) 
+		{
 			return true;
 		} else {
 			alert(helperMsg);
@@ -149,9 +113,11 @@ input[type="submit"]{
 			return false;
 		}
 	}
-	function isAlphabet(elem, helperMsg) {
+	function isAlphabet(elem, helperMsg) 
+	{
 		var alphaExp = /^[a-z A-Z]+$/;
-		if (elem.value.match(alphaExp)) {
+		if (elem.value.match(alphaExp)) 
+		{
 			return true;
 		} else {
 			alert(helperMsg);
@@ -159,9 +125,11 @@ input[type="submit"]{
 			return false;
 		}
 	}
-	function isAlphanumeric(elem, helperMsg) {
+	function isAlphanumeric(elem, helperMsg) 
+	{
 		var alphaExp = /^[0-9a-zA-Z]+$/;
-		if (elem.value.match(alphaExp)) {
+		if (elem.value.match(alphaExp)) 
+		{
 			return true;
 		} else {
 			alert(helperMsg);
@@ -169,9 +137,11 @@ input[type="submit"]{
 			return false;
 		}
 	}
-	function emailValidator(elem, helperMsg) {
+	function emailValidator(elem, helperMsg) 
+	{
 		var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-		if (elem.value.match(emailExp)) {
+		if (elem.value.match(emailExp)) 
+		{
 			return true;
 		} else {
 			alert(helperMsg);
@@ -179,8 +149,11 @@ input[type="submit"]{
 			return false;
 		}
 	}
-  </script>
   
+	
+  </script>
+  </head>
+<body>
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container">
@@ -188,7 +161,7 @@ input[type="submit"]{
 
 			<div class="row">
 			
-				<form:form action="saveregister" method="post" modelAttribute="user" onsubmit="return formRegister()">
+				<form:form action="saveregister" method="post" name="form" modelAttribute="user" onsubmit="return formRegister()">
 				 
 					 <body>
       <div id="container">
@@ -278,4 +251,3 @@ input[type="submit"]{
 	</div>
 </body>
 </html>
-<jsp:include page="footer.jsp"></jsp:include>

@@ -48,11 +48,101 @@ table.roundedCorners tr:last-child > td {
 .btn{background-colou: r#f44336;}
 
 </style>
+<script>
+  function formProd(){
+		// Make quick references to our fields
+		
+		var productName = document.getElementById('productName');
+		var productDesc = document.getElementById('productDesc');
+		var catId = document.getElementById('catId');
+		var supplierId = document.getElementById('supplierId');
+		var price = document.getElementById('price');
+		var Quantity = document.getElementById('Quantity');
+		// Check each input in the order that it appears in the form!
+		
+					if (notEmpty(productName, "Product Name Should not be empty")) 
+					{
+							if (isAlphabet(productName,"Please enter only letters for Product Name")) 
+							{
+								if (notEmpty(productDesc,"Product Description Should not be empty"))
+								{
+								         if (isAlphabet(productDesc,"Please enter only letters for Product Description")) 
+								         {
+								        	 if (notEmpty(catId,"Category Should not be empty"))
+								        	 {
+								        		 if(notEmpty(supplierId, "Supplier Name should not be empty"))
+								        		 {
+								        	
+										if (notEmpty(price,"Price Should not be empty")) 
+										{
+											if (isNumeric(price,"Please enter only number for Price"))
+											{
+														if (notEmpty(Quantity,"Stock Should not be empty"))
+														{
+															if (isNumeric(Quantity,"Please enter a valid Stock"))
+															{
+																if(notEmpty(pimage, "File should not be empty"))
+																{
+																return true;
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+							    }
+							}
+					}
+					}
+	return false;
+	}
+  
+   function notEmpty(elem, helperMsg) {
+		if (elem.value.length == 0) {
+			alert(helperMsg);
+			elem.focus(); // set the focus to this input
+			return false;
+		}
+		return true;
+	}
+	function isNumeric(elem, helperMsg) {
+		var numericExpression = /^[0-9]+$/;
+		if (elem.value.match(numericExpression)) {
+			return true;
+		} else {
+			alert(helperMsg);
+			elem.focus();
+			return false;
+		}
+	}
+	function isAlphabet(elem, helperMsg) {
+		var alphaExp = /^[a-z A-Z]+$/;
+		if (elem.value.match(alphaExp)) {
+			return true;
+		} else {
+			alert(helperMsg);
+			elem.focus();
+			return false;
+		}
+	}
+	function isAlphanumeric(elem, helperMsg) {
+		var alphaExp = /^[0-9a-zA-Z]+$/;
+		if (elem.value.match(alphaExp)) {
+			return true;
+		} else {
+			alert(helperMsg);
+			elem.focus();
+			return false;
+		}
+	}
+  </script>
+
 </head>
 <body>
 <!--<form action="AddCategory" method="post">-->
 <c:url value="/admin/updateProduct" var="var1"/>
-<form:form action="${var1}" modelAttribute="product" enctype="multipart/form-data">
+<form:form action="${var1}" modelAttribute="product" enctype="multipart/form-data" onsubmit="return formProd()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
 <td colspan="2" class="text-center" style="color:blue";>Product Module</td>
@@ -124,8 +214,17 @@ table.roundedCorners tr:last-child > td {
 <td>${product.productDesc}</td>
 
 <td>
-<a href="<c:url value="/admin/deleteProduct/${product.productId}"/>">DELETE</a>
-<a href="<c:url value="/admin/updateProduct/${product.productId}"/>">UPDATE</a>
+
+<ul>
+	<c:url value="/admin/deleteProduct/${product.productId}" var="del"/>
+	<a href="${del}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+</ul>
+
+<ul>
+	<c:url value="/admin/updateProduct/${product.productId}" var="update"/>
+	<a href="${update}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+	</ul>
+
 </td>
 </tr>
 </c:forEach>

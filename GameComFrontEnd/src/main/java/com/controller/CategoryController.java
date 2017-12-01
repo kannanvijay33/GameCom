@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.Dao.CategoryDAO;
 import com.niit.model.Category;
+import com.niit.model.Product;
 @Controller
 public class CategoryController 
 {
@@ -71,5 +72,5 @@ public class CategoryController
  		return "Category";
  	 
      }
-    
-}
+     
+ }

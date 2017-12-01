@@ -49,95 +49,58 @@ table.roundedCorners tr:last-child > td {
 .btn{background-colou: r#f44336;}
 
 </style>
-<script type="text/javascript">
-	function formRegister() {
-		// Make quick references to our fields
-		
-		var username = document.getElementById('user_name_fr');
-		var email = document.getElementById('email_id_fr');
-		var password = document.getElementById('password_fr');
-		var phone = document.getElementById('contactNumber_fr');
-		//var address = document.getElementById('address_fr');
+<script>
+function formCategory()
+{
+var catName = document.getElementById('catName');
+var catDesc = document.getElementById('catDesc');
+
+if (notEmpty(catName, " Category Name Should not be empty")) 
+{
 	
-		// Check each input in the order that it appears in the form!
-		
-					if (notEmpty(user_name_fr, "Username Should not be empty")) {
-							if (isAlphabet(username,
-									"Please enter only letters for Username")) {
-								if (notEmpty(email,
-								"EmailId Should not be empty")) {
-									if(emailValidator(email, "Please Enter a valid Email id")){ 
-								if (notEmpty(password,
-										"password Should not be empty")) {
-									if (isAlphanumeric(password,
-											"Numbers and Letters Only for Passwords")) {
-										if (notEmpty(phone,
-												"PhoneNumber Should not be empty")) {
-											if (isNumeric(phone,
-													"Please enter only number for PhoneNumber"))
-												{
-													return true;
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-  }
+	if (isAlphabet(catName, "Please enter only letters for Category Name "))
+		{
+		if (notEmpty(catDesc, "Description Should not be empty")) 
+		{
+			if (isAlphanumeric(catDesc, "Please enter alpha-numeric characters for Description"))
+				{
+		return true ;
+				}
+		}
+		}
+		}
+return false;
+}
+function notEmpty(elem, helperMsg) {
+	if (elem.value.length == 0) {
+		alert(helperMsg);
+		elem.focus(); // set the focus to this input
 		return false;
 	}
-  
-  function notEmpty(elem, helperMsg) {
-		if (elem.value.length == 0) {
-			alert(helperMsg);
-			elem.focus(); // set the focus to this input
-			return false;
-		}
+	return true;
+}
+function isAlphabet(elem, helperMsg) {
+	var alphaExp = /^[a-z A-Z]+$/;
+	if (elem.value.match(alphaExp)) {
 		return true;
+	} else {
+		alert(helperMsg);
+		elem.focus();
+		return false;
 	}
-  
-	function isNumeric(elem, helperMsg) {
-		var numericExpression = /^[0-9]+$/;
-		if (elem.value.match(numericExpression)) {
-			return true;
-		} else {
-			alert(helperMsg);
-			elem.focus();
-			return false;
-		}
+}
+function isAlphanumeric(elem, helperMsg) {
+	var alphaExp = /^[0-9a-zA-Z]+$/;
+	if (elem.value.match(alphaExp)) {
+		return true;
+	} else {
+		alert(helperMsg);
+		elem.focus();
+		return false;
 	}
-	function isAlphabet(elem, helperMsg) {
-		var alphaExp = /^[a-z A-Z]+$/;
-		if (elem.value.match(alphaExp)) {
-			return true;
-		} else {
-			alert(helperMsg);
-			elem.focus();
-			return false;
-		}
-	}
-	function isAlphanumeric(elem, helperMsg) {
-		var alphaExp = /^[0-9a-zA-Z]+$/;
-		if (elem.value.match(alphaExp)) {
-			return true;
-		} else {
-			alert(helperMsg);
-			elem.focus();
-			return false;
-		}
-	}
-	function emailValidator(elem, helperMsg) {
-		var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-		if (elem.value.match(emailExp)) {
-			return true;
-		} else {
-			alert(helperMsg);
-			elem.focus();
-			return false;
-		}
-	}
-  </script>
+}
+	
+</script>
 
 </head>
 <body>
@@ -146,7 +109,7 @@ table.roundedCorners tr:last-child > td {
 <security:authorize access="hasRole('ROLE_ADMIN')">
 
 <c:url value="/AddCategory" var="categ"></c:url>	
-<form:form action="${categ}" modelAttribute="category">
+<form:form action="${categ}" modelAttribute="category" onsubmit="return formCategory()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
 <td colspan="2" class="text-center" style="color:blue";>Category Module</td>
@@ -179,17 +142,26 @@ table.roundedCorners tr:last-child > td {
 <td>Operation</td>
 </security:authorize>
 </tr>
+
 <c:forEach items="${CategoryList}" var="category">
 <tr bgcolor="white">
 <%-- <td>${category.catId}</td> --%>
 <td>${category.catName}</td>
 <td>${category.catDesc}</td>
+
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <td>
+
+<ul>
 <c:url value="/admin/deleteCategory/${category.catId}" var="del"/>
-<a href="${del}">DELETE</a>
+<a href="${del}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+</ul>
+
+<ul>
 <c:url value="/admin/updateCategory/${category.catId}" var="update"/>
-<a href="${update}">UPDATE</a>
+<a href="${update}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+</ul>
+
 </td>
 </security:authorize>
 </tr>

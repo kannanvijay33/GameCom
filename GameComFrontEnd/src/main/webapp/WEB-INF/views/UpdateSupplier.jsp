@@ -47,21 +47,85 @@ table.roundedCorners tr:last-child > td {
 .btn{background-colou: r#f44336;}
 
 </style>
-
+<script>
+function formSupplier() {
+	var supId = document.getElementById('supplierId');
+	var supName = document.getElementById('supName');
+	var supAddress = document.getElementById('supAddress');
+	
+	
+	if (notEmpty(supName, " Supplier Name Should not be empty")) 
+	{
+		
+		if (isAlphabet(supName, "Please enter only letters for Supplier Name "))
+			{
+			if (isNumeric(supId, "Pnone # Should  be numeric")) 
+			{
+				if (isAlphanumeric(supAddress, "Please enter alpha-numeric characters for Address"))
+				{
+					
+	}
+	}
+}
+	return false;
+	}
+	function notEmpty(elem, helperMsg) {
+		if (elem.value.length == 0) {
+			alert(helperMsg);
+			elem.focus(); // set the focus to this input
+			return false;
+		}
+		return true;
+	}
+	function isAlphabet(elem, helperMsg) {
+		var alphaExp = /^[a-z A-Z]+$/;
+		if (elem.value.match(alphaExp)) {
+			return true;
+		} else {
+			alert(helperMsg);
+			elem.focus();
+			return false;
+		}
+	}
+	function isAlphanumeric(elem, helperMsg) {
+		var alphaExp = /^[0-9a-zA-Z\.\-]+$/;
+		if (elem.value.match(alphaExp)) {
+			return true;
+		} else {
+			alert(helperMsg);
+			elem.focus();
+			return false;
+		}
+	}
+	
+	function isNumeric(elem, helperMsg) {
+		var numericExpression = /^[0-9]+$/;
+		if (elem.value.match(numericExpression)) {
+			return true;
+		} else {
+			alert(helperMsg);
+			elem.focus();
+			return false;
+		}
+	}
+	}
+	
+</script>
 </head>
 <body>
 <c:url value="/updateSupplier" var="update"/>
-<form:form action="${update}" modelAttribute="supplier">
+<form:form action="${update}" modelAttribute="supplier" onsubmit="return formSupplier()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
 <td colspan="2"  class="text-center" style="color:blue";>Supplier Module</td>
 </tr>
-<tr>
 
+<%-- <tr>
 <!--<td><input type="text" name="catId"/></td>-->
 <td><form:hidden path="supId"/></td>
-</tr>
+</tr> --%>
 <tr>
+
 <td>Supplier Name</td>
 <!--<td><input type="text" name="catName"/></td>-->
 <td><form:input path="supName"/></td>
@@ -92,8 +156,16 @@ table.roundedCorners tr:last-child > td {
 <td>${supplier.supAddress}</td>
 
 <td>
-<c:url value="/admin/deleteSupplier/${supplier.supplierId}" var="del"/><a href="${del}">DELETE</a>
-<c:url value="/admin/updateSupplier/${supplier.supplierId}" var="update"/><a href="${update}">UPDATE</a>
+<ul>
+<c:url value="/updateSupplier/${supplier.supplierId}" var="update"/>
+<a href="${update}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+</ul>
+
+<ul>
+<c:url value="/deleteSupplier/${supplier.supplierId}" var="del"/>
+<a href="${del}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+</ul>
+
 </td>
 
 </tr>

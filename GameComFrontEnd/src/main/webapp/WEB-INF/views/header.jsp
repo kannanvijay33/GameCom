@@ -115,10 +115,13 @@ nav a:hover {
  <ul class="nav navbar-left navbar-nav left1">
  <c:url value="/" var="home" ></c:url>
  <li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+ 
+  <c:url value="/aboutus" var="about" ></c:url>
+ <li><a href="${about}">AboutUs</a></li>
+ 
  </ul>
  
- 
- 
+
  <ul class="nav navbar-right navbar-nav right0">
  <c:if test="${pageContext.request.userPrincipal.name==null }">
  

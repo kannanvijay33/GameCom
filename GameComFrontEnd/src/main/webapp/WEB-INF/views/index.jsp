@@ -95,21 +95,24 @@ src="resources/img8.png" >
 
 </div>
 </div>
-
-<!-- <div class="clear spaces20"></div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10">
+<br>
+<br>
+<br>
+<br>	
+ <div class="clear spaces20"></div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10" style="margin:auto">
 
 <div class="clear spaces10"></div>
- -->
-<%-- <c:if test="${empty listProduct}">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10" align="center">
+
+ <c:if test="${empty listProduct}">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10" align="center" style="margin:auto">
 <span>No Products available</span>
 </div>
-</c:if> --%>
+</c:if> 
 
- 	<%-- <c:if test="${ !empty listProduct}">
+ 	 <c:if test="${ !empty listProduct}">
 	<c:forEach  items="${listProduct}" var="pro">
-	<div class="col-lg-4 col-md-4 col-sm-12 spaces10">
+	<div class="col-lg-6 col-md-6 col-sm-6 spaces10">
 		<img src="${pageContext.request.contextPath}/resources/products/${pro.productId}.png" style="width:100px; height:100px"/>
 		
 		<br>
@@ -120,27 +123,17 @@ src="resources/img8.png" >
 		
 		<br>
 		<span >${pro.price}</span>
-		<c:if test="${pageContext.request.userPrincipal.name!=null }"> 
-	
-	<security:authorize access="hasRole('ROLE_USER')">		
-		<a href="<c:url value="/cart/viewProduct/${pro.productId}" />">VIEW</a>
-	</security:authorize>
-	
-	<security:authorize access="hasRole('ROLE_ADMIN')">	
 		
-		<a href="<c:url value="/admin/viewProduct/${pro.productId}" />">VIEW1</a>
-	</security:authorize>
-	</c:if>
-	
 	<c:if test="${pageContext.request.userPrincipal.name==null }"> 
 	
-	<a href="<c:url value="/viewProduct/${pro.productId}" />">VIEW2</a>
+	<a href="<c:url value="/viewProduct/${pro.productId}" />">VIEW</a>
 	</c:if>
-	
+	</div>
 	</c:forEach>
-	</c:if> --%>
+	</c:if>
 
 
+</div>
 
 </body>
 </html>
