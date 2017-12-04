@@ -59,9 +59,15 @@ public class IndexController
 	   @RequestMapping(value="aboutus", method=RequestMethod.GET)
 	   public ModelAndView goToaboutus()
 	   {
-		   ModelAndView mv=new ModelAndView(); 
-	      
+		   ModelAndView mv=new ModelAndView();      
 	       mv.setViewName("aboutus");
 	       return mv;
 		   }
+	   @RequestMapping("/404")
+		public String accessdenied()
+		{
+			return "404";
+		}
+	   
+	     
 	 }

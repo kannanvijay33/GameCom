@@ -109,7 +109,7 @@ function formSupplier()
 <form:form action="${supp}" modelAttribute="supplier" onsubmit="return formSupplier()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
-<td colspan="2" class="text-center" style="color:blue";>Supplier Details</td>
+<td colspan="2" class="text-center" style="color:blue">Supplier Details</td>
 </tr>
 
 <%-- <tr>
@@ -148,12 +148,13 @@ function formSupplier()
 
 
 <c:forEach items="${SupplierList}" var="supplier">
-<tr bgcolor="white">
+<tr bgcolor="#7FFF00">
 <%-- <td>${supplier.supplierId}</td> --%>
 <td>${supplier.supName}</td>
 <td>${supplier.supAddress}</td>
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <td>
+
 <ul>
 <c:url value="/updateSupplier/${supplier.supplierId}" var="update"/>
 <a href="${update}"><i class="fa fa-pencil" aria-hidden="true"></i></a>

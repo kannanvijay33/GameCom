@@ -100,7 +100,7 @@ src="resources/img8.png" >
 <br>
 <br>	
  <div class="clear spaces20"></div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10" style="margin:auto">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin:auto">
 
 <div class="clear spaces10"></div>
 
@@ -116,18 +116,20 @@ src="resources/img8.png" >
 		<img src="${pageContext.request.contextPath}/resources/products/${pro.productId}.png" style="width:100px; height:100px"/>
 		
 		<br>
-		<span >${pro.productName}</span>
+		<span >Product Name:${pro.productName}</span>
+		
+		<%-- <br>
+		<span >${pro.productDesc}</span>--%>		
 		
 		<br>
-		<span >${pro.productDesc}</span>
+		<span >Price:${pro.price}</span>
 		
 		<br>
-		<span >${pro.price}</span>
-		
-	<c:if test="${pageContext.request.userPrincipal.name==null }"> 
+		<a href="<c:url value="/viewProduct/${pro.productId}" />">VIEW</a>
+	<%-- <c:if test="${pageContext.request.userPrincipal.name==null }"> 
 	
 	<a href="<c:url value="/viewProduct/${pro.productId}" />">VIEW</a>
-	</c:if>
+	</c:if> --%>
 	</div>
 	</c:forEach>
 	</c:if>

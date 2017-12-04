@@ -142,15 +142,17 @@ function formSupplier() {
 </tr>
 </table>
 </form:form>
+
 <table class="roundedCorners" style="margin:auto">
-<tr bgcolor="gray">
+<tr bgcolor="#E9967A">
 <td>Supplier ID</td>
 <td>Supplier Name</td>
 <td>Supplier Address</td>
 <td>Operation</td>
 </tr>
+
 <c:forEach items="${SupplierList}" var="supplier">
-<tr bgcolor="white">
+<tr bgcolor="#00FFFF">
 <td>${supplier.supplierId}</td>
 <td>${supplier.supName}</td>
 <td>${supplier.supAddress}</td>

@@ -9,13 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
- <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 table.roundedCorners { 
@@ -200,15 +195,20 @@ table.roundedCorners tr:last-child > td {
 </tr>
 </table>
 </form:form>
+<br>
+<br>
+<br>
+<br>
 <table class="roundedCorners" style="margin:auto">
-<tr bgcolor="gray">
+<tr bgcolor="#FFFAF0">
  <td>Product ID</td> 
 <td>Product Name</td>
 <td>Product Description</td>
 <td>Operation</td>
 </tr>
+
 <c:forEach items="${productList}" var="product">
-<tr bgcolor="yellow">
+<tr bgcolor="#FF1493">
 <td>${product.productId}</td>
 <td>${product.productName}</td>
 <td>${product.productDesc}</td>

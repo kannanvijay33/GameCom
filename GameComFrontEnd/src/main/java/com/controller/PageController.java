@@ -45,6 +45,7 @@ public class PageController
 	{
 		return "403";
 	}
+	/*
 	@RequestMapping("/aboutus")
 	public ModelAndView Aboutus() 
 	{
@@ -53,5 +54,6 @@ public class PageController
 		mv.addObject("title","Aboutus");
 		mv.addObject("isUserClickedAboutus", "true");
 		return mv;
-	}
+	}*/
+	
 	}

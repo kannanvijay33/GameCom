@@ -66,17 +66,17 @@
 				<div class="col-sm-6 col-lg-6">
 					<ul>
 						<b>Connect with Us</b>
+						<br>
+						<a href="https://www.facebook.com">facebook<i class="fa fa-facebook fa-3x fa-fw"></i></a>
+						<br>
+						<a href="https://twitter.com">Twitter<i class="fa fa-twitter fa-3x fa-fw"></i></a>
+						<br>
+              <a href="https://www.youtube.com">Youtube<i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+              <br>
+               <a href="https://www.linkedin.com">Linkedin<i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+					<br>	
 						
 						
-						<ul>Facebook<i class="fa fa-facebook" style="float: left; padding-right: 10px; padding-top: 3px;"></i></ul>
-						
-						
-						<ul>Twitter<i class="fa fa-twitter" style="float: left; padding-right: 10px; padding-top: 3px;"></i></ul>
-						
-						<ul>Instagram<i class="fa fa-instagram" style="float: left; padding-right: 10px; padding-top: 3px;"></i></ul>
-						
-						
-						<ul>Youtube<i class="fa fa-youtube" style="float: left; padding-right: 10px; padding-top: 3px;"></i></ul>
 					</ul>
 				</div>
 				<br>

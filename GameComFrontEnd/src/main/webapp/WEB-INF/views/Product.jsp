@@ -9,13 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-   <!-- Latest compiled and minified CSS -->
+   
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 table.roundedCorners { 
@@ -180,7 +176,7 @@ table.roundedCorners tr:last-child > td {
 </td>
 </tr>
 
-<%-- <tr>
+<tr>
 <td>Supplier</td>
 <td>
 <form:select path="supplierId">
@@ -188,13 +184,13 @@ table.roundedCorners tr:last-child > td {
 <form:options items="${SupplierList}"/>
 </form:select>
 </td>
-</tr> --%>
+</tr> 
 
-<tr>
+<%-- <tr>
 <td>Supplier</td>
 <td><form:input path="supplierId"/></td>
 </tr>
-
+ --%>
 
 <tr>
 <td>Product Image</td>
@@ -208,10 +204,14 @@ table.roundedCorners tr:last-child > td {
 </tr>
 </table>
 </form:form>
+<br>
+<br>
+<br>
+<br>
 </security:authorize>
 <table class="roundedCorners" style="margin:auto">
 
-<tr bgcolor="gray">
+<tr bgcolor="#00CED1">
 <td>Product Name</td>
 <td>Product Description</td>
 <td>Stock</td>
@@ -225,7 +225,7 @@ table.roundedCorners tr:last-child > td {
 </tr>
 
 <c:forEach items="${productList}" var="product">
-<tr bgcolor="lightyellow">
+<tr bgcolor="#FF8C00">
 <c:url value="/viewProduct/${product.productId}" var="prod"></c:url>
 <td><a href="${prod}">${product.productName}</a></td>
 <td>${product.productDesc}</td>

@@ -102,26 +102,23 @@ function isAlphanumeric(elem, helperMsg) {
 </script>
 
 <body>
-
-<!--<form action="AddCategory" method="post">-->
+<br>
+<br>
 <c:url value="/admin/updateCategory" var="update"/>
 <form:form action="${update}" modelAttribute="category" onsubmit="return formCategory()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
-<td colspan="2" class="text-center" style="color:blue";>Category Module</td>
+<td colspan="2" class="text-center" style="color:blue">Category Module</td>
 </tr>
 <tr>
-<!--<td><input type="text" name="catId"/></td>-->
 <td><form:hidden path="catId"/></td>
 </tr>
 <tr>
 <td>Category Name</td>
-<!--<td><input type="text" name="catName"/></td>-->
 <td><form:input path="catName"/></td>
 </tr>
 <tr>
 <td>Category Desc</td>
-<!--<td><input type="text" name="catDesc"/></td>-->
 <td><form:input path="catDesc"/></td>
 </tr>
 <tr>
@@ -131,16 +128,19 @@ function isAlphanumeric(elem, helperMsg) {
 </tr>
 </table>
 </form:form>
-
+<br>
+<br>
+<br>
+<br>
 <table class="roundedCorners" style="margin:auto">
-<tr bgcolor="gray">
+<tr bgcolor="#FFFFF0">
 <td>Category ID</td>
 <td>Category Name</td>
 <td>Category Description</td>
 <td>Operation</td>
 </tr>
 <c:forEach items="${CategoryList }" var="category">
-<tr bgcolor="white">
+<tr bgcolor="#7CFC00">
 <td>${category.catId}</td>
 <td>${category.catName}</td>
 <td>${category.catDesc}</td>

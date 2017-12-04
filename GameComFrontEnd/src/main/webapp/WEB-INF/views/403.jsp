@@ -14,9 +14,11 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", "sans-serif";
 }
 </style>
 </head>
+<%@ include file="header.jsp"%>
 <body>
 <center><h4>You are an unauthorized person to view this page</h4></center><br>
 <c:url value="WEB-INF/resources//404.png" var="image"></c:url> 
 <center><img src="${image}" /></center>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -1,6 +1,4 @@
 <%@include file="/WEB-INF/views/header.jsp"%>
-
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <script>
@@ -39,19 +37,8 @@ function login()
 				<h3>GameCom Login Here!!</h3>
 			</div>
 			
-			<!-- Form login -->
-			<c:url value="/j_spring_security_check" var="action"></c:url>
+		<c:url value="/check" var="action"></c:url>
 		<form:form action="${action}" class="log" method="post" id="" onsubmit="return login()">
-
-			
-				<!-- <div class="form-group">
-					<label>Email ID</label>
-					<input type="text" name="j_username" class="newtext form-control"
-						placeholder="Email"/>
-						
-				</div>
- -->
- 
  				<div class="form-group">
 					<label>Email ID</label>
 					<input type="text" name="j_username" class="newtext form-control"

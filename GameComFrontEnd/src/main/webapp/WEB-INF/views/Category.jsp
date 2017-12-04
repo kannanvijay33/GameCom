@@ -105,24 +105,21 @@ function isAlphanumeric(elem, helperMsg) {
 </head>
 <body>
 
-<!--<form action="AddCategory" method="post">-->
 <security:authorize access="hasRole('ROLE_ADMIN')">
-
 <c:url value="/AddCategory" var="categ"></c:url>	
 <form:form action="${categ}" modelAttribute="category" onsubmit="return formCategory()">
 <table border="2" cellspacing="5px" cellpadding="10px" style="margin:auto">
 <tr >
-<td colspan="2" class="text-center" style="color:blue";>Category Module</td>
+<td colspan="2" class="text-center" style="color:blue">Category Module</td>
 </tr>
  
  <tr>
 <td>Category Name</td>
-<!--<td><input type="text" name="catName"/></td>-->
 <td><form:input path="catName"/></td>
 </tr>
+
 <tr>
 <td>Category Desc</td>
-<!--<td><input type="text" name="catDesc"/></td>-->
 <td><form:input path="catDesc"/></td>
 </tr>
 <tr>
@@ -130,22 +127,27 @@ function isAlphanumeric(elem, helperMsg) {
 <center><input type="submit" class="btn" value="Insert"/></center>
 </td>
 </tr>
+
 </table>
 </form:form>
 </security:authorize>
 <table class="roundedCorners" style="margin:auto">
-<tr bgcolor="gray">
+<tr bgcolor="#B8860B">
 
 <td>Category Name</td>
 <td>Category Description</td>
+<br>
+<br>
+<br>
+<br>
+
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <td>Operation</td>
 </security:authorize>
 </tr>
 
 <c:forEach items="${CategoryList}" var="category">
-<tr bgcolor="white">
-<%-- <td>${category.catId}</td> --%>
+<tr bgcolor="#FF7F50">
 <td>${category.catName}</td>
 <td>${category.catDesc}</td>
 
