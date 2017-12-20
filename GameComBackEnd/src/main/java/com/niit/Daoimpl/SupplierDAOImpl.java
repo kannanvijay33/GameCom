@@ -57,9 +57,9 @@ public class SupplierDAOImpl implements com.niit.Dao.SupplierDAO {
 	}
 
 	@Transactional
-	public Supplier getSupplier(int supId) {
+	public Supplier getSupplier(int supplierId) {
 		Session session = sessionFactory.openSession();
-		Supplier supplier = (Supplier) session.get(Supplier.class, supId);
+		Supplier supplier = (Supplier) session.get(Supplier.class, supplierId);
 		session.close();
 		return supplier;
 	}

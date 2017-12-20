@@ -8,6 +8,6 @@ public interface SupplierDAO {
 	public boolean addSupplier(Supplier supplier);
 	public List<Supplier> retrieveSupplier();
 	public boolean deleteSupplier(Supplier supplier);
-	public Supplier getSupplier(int supId);
+	public Supplier getSupplier(int supplierId);
 	public boolean updateSupplier(Supplier supplier);
 }
