@@ -14,9 +14,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel=stylesheet href="/resources/registration.css"/>
+<!-- <style>
+body{
+	background:url("https://www.technobuffalo.com/wp-content/uploads/2013/07/Assassins-Creed-IV-Black-Flag-5.jpg");
+	background-size:cover;
+	margin:0;
+}
+
+</style> -->
 <script type="text/javascript">
-	function formRegister() {
-		// Make quick references to our fields
+	function formRegister() 
+	{
 		
 		var username = document.getElementById('user_name_fr');
 		var email = document.getElementById('email_id_fr');
@@ -180,4 +188,9 @@
 
 </body>
 </html>
+<br>
+<br>
+<br>
+<br>
+
 <%@ include file="footer.jsp"%>

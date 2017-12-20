@@ -67,13 +67,13 @@
 					<ul>
 						<b>Connect with Us</b>
 						<br>
-						<a href="https://www.facebook.com">facebook<i class="fa fa-facebook fa-3x fa-fw"></i></a>
+						<a href="https://www.facebook.com">facebook<i class="fa fa-facebook fa-3x fa-fw" style="font-size:20px"></i></a>
 						<br>
-						<a href="https://twitter.com">Twitter<i class="fa fa-twitter fa-3x fa-fw"></i></a>
+						<a href="https://twitter.com">Twitter<i class="fa fa-twitter fa-3x fa-fw" style="font-size:20px"></i></a>
 						<br>
-              <a href="https://www.youtube.com">Youtube<i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+              <a href="https://www.youtube.com">Youtube<i class="fa fa-youtube-play fa-3x fa-fw" style="font-size:20px"></i></a>
               <br>
-               <a href="https://www.linkedin.com">Linkedin<i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+               <a href="https://www.linkedin.com">Linkedin<i class="fa fa-linkedin fa-3x fa-fw" style="font-size:20px"></i></a>
 					<br>	
 						
 						
@@ -96,5 +96,5 @@
 
 </body>
 </html>
-</body>
-</html>
+
+

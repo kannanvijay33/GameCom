@@ -126,14 +126,15 @@ src="resources/img8.png" >
 		
 		<br>
 		<a href="<c:url value="/viewProduct/${pro.productId}" />">VIEW</a>
-	<%-- <c:if test="${pageContext.request.userPrincipal.name==null }"> 
 	
-	<a href="<c:url value="/viewProduct/${pro.productId}" />">VIEW</a>
-	</c:if> --%>
 	</div>
 	</c:forEach>
 	</c:if>
-
+<br>
+<br>
+<br>
+<br><br>
+<br>
 
 </div>
 

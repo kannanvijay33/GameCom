@@ -1,6 +1,15 @@
 <%@include file="/WEB-INF/views/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<style>
+body{
+	background:url("https://cdn-images-1.medium.com/max/1600/0*64Cusmi5LTdmSKIH.jpg");
+	background-size:cover;
+	margin:0;
+	
+}
+
+</style>
 <script>
 function login() 
 {
@@ -34,6 +43,12 @@ function login()
 		<div class="col md-4 myform" style="width: 600px; margin:20px auto;">
 			<div class="myform_head">
 
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			
 				<h3>GameCom Login Here!!</h3>
 			</div>
 			
